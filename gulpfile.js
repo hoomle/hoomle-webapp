@@ -1,7 +1,7 @@
 'use strict';
 
 
-var appServer = require('./server/config/app');
+var appServer = require('./backend/config/app');
 
 // Include Gulp and other build automation tools and utilities
 // See: https://github.com/gulpjs/gulp/blob/master/docs/API.md
@@ -12,10 +12,8 @@ var path = require('path');
 var merge = require('merge-stream');
 var runSequence = require('run-sequence');
 var webpack = require('webpack');
-var browserSync = require('browser-sync');
 var pagespeed = require('psi');
 var fs = require('fs');
-var url = require('url');
 var ReactTools = require('react-tools');
 var argv = require('minimist')(process.argv.slice(2));
 
@@ -80,7 +78,7 @@ gulp.task('vendor', function() {
 
 // Static files
 gulp.task('assets', function() {
-  src.assets = 'src/assets/**';
+  src.assets = 'frontend/assets/**';
   return gulp.src(src.assets)
     .pipe($.changed(DEST))
     .pipe(gulp.dest(DEST))
@@ -89,7 +87,7 @@ gulp.task('assets', function() {
 
 // Images
 gulp.task('images', function() {
-  src.images = 'src/images/**';
+  src.images = 'frontend/images/**';
   return gulp.src(src.images)
     .pipe($.changed(DEST + '/images'))
     .pipe($.imagemin({
@@ -102,8 +100,8 @@ gulp.task('images', function() {
 
 // CSS style sheets
 gulp.task('styles', function() {
-  src.styles = 'src/styles/**/*.{css,less}';
-  return gulp.src('src/styles/main.less')
+  src.styles = 'frontend/styles/**/*.{css,less}';
+  return gulp.src('frontend/styles/main.less')
     .pipe($.plumber())
     .pipe($.less({
       sourceMap: !RELEASE,
@@ -120,7 +118,7 @@ gulp.task('styles', function() {
 // Bundle
 gulp.task('bundle', function(cb) {
   var started = false;
-  var config = require('./config/webpack.js')(RELEASE);
+  var config = require('./frontend/config/webpack.js')(RELEASE);
   var bundler = webpack(config);
 
   function bundle(err, stats) {
@@ -170,7 +168,7 @@ gulp.task('serve', function(cb) {
     gulp.watch(src.images, ['images']);
     gulp.watch(src.styles, ['styles']);
     gulp.watch(DEST + '/**/*.*', launchServer);
-    gulp.watch('server/**/*.*', launchServer);
+    gulp.watch('backend/**/*.*', launchServer);
     cb();
   });
 });

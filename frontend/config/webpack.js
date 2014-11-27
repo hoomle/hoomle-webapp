@@ -14,7 +14,7 @@ var webpack = require('webpack');
  */
 module.exports = function(release) {
   return {
-    entry: './src/app.js',
+    entry: './frontend/app.js',
 
     output: {
       filename: 'app.js',

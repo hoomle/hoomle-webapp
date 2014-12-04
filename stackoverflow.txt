@@ -1,0 +1,17 @@
+Hello,
+
+I'm working with the Instagram API, and when I redirect the user to IG to authenticate him with my application, it is ok. But to add a context attached at this request, I want to add a query param to the "redirect_uri" like this "workflow=auth".
+
+<b>https://api.instagram.com/oauth/authorize/?</b>
+
+with these parameters
+
+<ul>
+    <li>client_id=CLIENT_ID</li>
+    <li>response_type=code</li>
+    <li>redirect_uri=http://localhost:5000/auth/instagram/callback/?workflow=auth</li>
+</ul>
+
+On Instagram API, the "redirect_uri" specify is: http://localhost:5000/auth/instagram/callback/
+
+But, the documentation said it is possible to add some query params

@@ -3,13 +3,20 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>hoole | Internal error</title>
+    <title><%= user.displayName %> | hoole</title>
+    <meta name="description" content="<%= user.bio %>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
 <div id="wrapper">
-    <p>an error occured during the processing of request, please retry later or contact us.</p>
+    <header class="highlight">
+        <a class="main-picture" href="#"><img src="images/stanislas-chollet.jpg" alt="<%= user.displayName %>" /></a>
+        <h1 class="fullname"><%= user.displayName %></h1>
+        <div class="description"><%= user.bio %></div>
+        <div class="place"><%= user.location %></div>
+    </header>
+    <section id="boxes"></section>
 </div>
 <script src="app.js"></script>
 <!-- Google Analytics -->

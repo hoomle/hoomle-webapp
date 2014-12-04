@@ -1,0 +1,12 @@
+/* https://api.instagram.com/oauth/access_token */
+{
+    "access_token":"866650.c392826.128847d8a4774c50acc9ef54628ef129",
+    "user": {
+        "username":"tsunammis",
+        "bio":"Software Engineer at @meeticfr",
+        "website":"",
+        "profile_picture":"https://instagramimages-a.akamaihd.net/profiles/profile_866650_75sq_1333917732.jpg",
+        "full_name":"Stan",
+        "id":"866650"
+    }
+}

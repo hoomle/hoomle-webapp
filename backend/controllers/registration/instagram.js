@@ -1,7 +1,7 @@
 var errors              = require('../../validator/index').Errors,
     Configuration       = require('../../config/configuration'),
     _                   = require('lodash'),
-    when                = require('when')
+    when                = require('when'),
     superagent          = require('superagent');
 
 var index = function(req, res, next) {

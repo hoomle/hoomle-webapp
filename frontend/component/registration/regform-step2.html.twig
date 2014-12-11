@@ -1,0 +1,82 @@
+<!--
+    STEP 2
+    - case #1: Country -> Region -> City
+    - case #2: Country -> Postal code -> City
+-->
+<div ng-show="steps.current == 2" ng-cloak>
+
+    <div ng-attr-class="{[{registerForm.country.$invalid && 'mandatory-field has-error' || 'mandatory-field'}]}">
+        <div ng-messages="registerForm.country.$error" ng-messages-include="api-messages" class="error-message"></div>
+        <label id="countrylabel" for="country">{{ 'form.registration.label.country'|trans }}</label>
+        <select name="country"
+                ng-model="user.country"
+                ng-options="country.iso_code as country.name for country in countries"
+                ng-change="onCountryChange(user.country); v(2, registerForm, user, validator.country)"
+                id="country"
+                class="small-12 field select-black">
+            <option value="" disabled selected>{{ 'form.registration.placeholder.country'|trans }}</option>
+        </select>
+    </div>
+    <!--
+        case #1: Country -> Region -> City
+    -->
+    <div ng-show="!countrySelected.zipcode_enabled && regions.length > 0" ng-attr-class="{[{registerForm.region.$invalid && 'mandatory-field has-error' || 'mandatory-field'}]}">
+        <div ng-messages="registerForm.region.$error" ng-messages-include="api-messages" class="error-message"></div>
+        <label id="regionlabel" for="region">{{ "form.registration.label.region"|trans }}</label>
+        <select name="region"
+                ng-model="user.region"
+                ng-options="region.id as region.name for region in regions"
+                ng-change="onRegionChange(user.region); v(2, registerForm, user, validator.region)"
+                id="region"
+                ng-class="user.region && 'select-black'"
+                class="small-12 field">
+            <option value="" disabled selected>{{ 'form.registration.placeholder.region'|trans }}</option>
+        </select>
+        <div ng-show="places.length > 0">
+            <label id="citylabel" for="country">{{ 'form.registration.label.city'|trans }}</label>
+            <select name="place"
+                    ng-model="user.place"
+                    ng-change="v(2, registerForm, user, validator.place)"
+                    is-disabled="places.length < 1"
+                    ng-options="place.id as place.city.name for place in places"
+                    id="city"
+                    ng-class="user.place && 'select-black'"
+                    class="small-12 field">
+                <option value="" disabled selected>{{ 'form.registration.placeholder.city'|trans }}</option>
+            </select>
+        </div>
+    </div>
+    <!--
+        case #2: Country -> Postal code -> City
+    -->
+    <div ng-show="countrySelected.zipcode_enabled" ng-attr-class="{[{(registerForm.place.$invalid) && 'mandatory-field has-error location-field' || 'location-field mandatory-field'}]}">
+        <div ng-messages="registerForm.place.$error" ng-messages-include="api-messages" class="error-message"></div>
+        <label id="zipcodelabel" for="zipcode">{{ 'form.registration.label.zipcodeandcity'|trans }}</label>
+        <div class="row">
+            <div class="small-12 medium-4 columns">
+                <input name="zipcode"
+                       ng-model="user.zipcode"
+                       ng-blur="onZipcodeChange(user.country, user.zipcode); v(2, registerForm, user, validator.zipcode)"
+                       class="field"
+                       type="text"
+                       maxlength="5"
+                       id="zipcode"
+                       placeholder="{{ 'form.registration.placeholder.zipcode'|trans }}" />
+            </div>
+            <div class="small-12 medium-7 fieldcheckStep1 columns">
+                <select name="place"
+                        ng-model="user.place"
+                        ng-change="v(2, registerForm, user, validator.place)"
+                        ng-options="place.id as place.city.name for place in places"
+                        id="city"
+                        ng-attr-class="{[{(places.length > 0) && 'select-black small-12 field' || 'small-12 field'}]}">
+                    <option value="" disabled selected>{{ 'form.registration.placeholder.city'|trans }}</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <button ng-click="validateStep2(registerForm, user);">
+        <div ng-http-loader template="api-loader"></div>
+        {{ 'form.registration.cta.step2'|trans }}
+    </button>
+</div>

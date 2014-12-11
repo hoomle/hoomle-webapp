@@ -1,0 +1,21 @@
+<form novalidate name="loginForm" class="simple-form" method="post" meetic-tl-login-onsubmit
+      action="{{ ilius_config['dating']['secure_base_url'] }}/authent/secure.php">
+    <input name="post" type="hidden" value="1">
+    <input name="host" type="hidden" value="{{ ilius_config['host'] }}">
+    <input id="charset" name="charset" type="hidden" value="UTF8">
+    <input name="target_failed" type="hidden" value="{{ ilius_config['login']['error_target'] }}">
+    <label id="labelmail" for="log">{{ 'form.login.label.email' | trans }}</label>
+    <input type="email" name="log" />
+    <label id="labelmail" for="pwd">{{ 'form.login.label.password' | trans }}</label>
+    <input type="password" name="pwd" />
+    <div ng-if="loginBadCredentials" class="api-messages-final">{{ 'form.login.errors.bad_credentials'|trans }}</div>
+    <div class="remember_me_container">
+        <input id="remember_me" type="checkbox" checked="checked" name="remember_me">
+        <label title="{{ 'form.login.label.rememberme' | trans }}" for="remember_me">{{ 'form.login.label.rememberme' | trans }}</label>
+        <a class="standard-link" ng-click="currentView='forgottendetails'" href="#">{{ 'form.registration.label.forgottendetails' | trans }}</a>
+    </div>
+    <button>
+        <div ng-http-loader template="api-loader"></div>
+        {{ 'form.login.cta' | trans }}
+    </button>
+</form>

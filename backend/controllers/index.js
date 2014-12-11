@@ -1,19 +1,19 @@
 var defaultCtrl                 = require('./default'),
     userCtrl                    = require('./user'),
     instagramAuthCtrl           = require('./auth/instagram'),
-    instagramRegistrationCtrl   = require('./registration/instagram');
-    handleRegistrationCtrl      = require('./registration/handle')
-    defaultRegistrationCtrl     = require('./registration/default');
+    instagramRegisterCtrl       = require('./register/instagram'),
+    handleRegisterCtrl          = require('./register/handle'),
+    defaultRegisterCtrl         = require('./register/default');
 
 module.exports = {
-    Default: defaultCtrl,
-    User: userCtrl,
-    Auth: {
-        Instagram: instagramAuthCtrl
+    default: defaultCtrl,
+    user: userCtrl,
+    auth: {
+        instagram: instagramAuthCtrl
     },
-    Registration: {
-        Default: defaultRegistrationCtrl,
-        Handle: handleRegistrationCtrl,
-        Instagram: instagramRegistrationCtrl
+    register: {
+        default: defaultRegisterCtrl,
+        handle: handleRegisterCtrl,
+        instagram: instagramRegisterCtrl
     }
 };

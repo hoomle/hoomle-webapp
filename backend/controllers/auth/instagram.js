@@ -70,7 +70,7 @@ var callback = function(req, res, next) {
 
                         console.info('callback: request token ok');
 
-                        return res.redirect('/registration/instagram');
+                        return res.redirect('/register/instagram');
                     }
                 }
 

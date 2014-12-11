@@ -1,0 +1,54 @@
+<!--
+    STEP 3
+    - nickname
+    - email
+    - password
+-->
+<div ng-show="steps.current == 3" ng-cloak>
+    <!-- STEP 3 -->
+    <div ng-attr-class="{[{registerForm.nickname.$invalid && 'mandatory-field has-error' || 'mandatory-field'}]}">
+        <div ng-messages="registerForm.nickname.$error" ng-messages-include="api-messages" class="error-message"></div>
+        <label id="labelmail" for="nickname">{{ 'form.registration.label.nickname'|trans }}</label>
+        <input name="nickname"
+               id="nickname"
+               ng-model="user.nickname"
+               ng-blur="v(3, registerForm, user, validator.nickname)"
+               class="field"
+               placeholder="{{ 'form.registration.placeholder.nickname'|trans }}"
+               type="text" />
+    </div>
+    <div ng-attr-class="{[{registerForm.email.$invalid && 'mandatory-field has-error' || 'mandatory-field'}]}">
+        <div ng-messages="registerForm.email.$error" ng-messages-include="api-messages" class="error-message"></div>
+        <label id="labelmail" for="email">{{ 'form.registration.label.email'|trans }}</label>
+        <input name="email"
+               id="email"
+               ng-model="user.email"
+               ng-blur="v(3, registerForm, user, validator.email)"
+               class="field"
+               placeholder="{{ 'form.registration.placeholder.email'|trans }}"
+               type="text" />
+    </div>
+    <div ng-attr-class="{[{registerForm.password.$invalid && 'mandatory-field has-error' || 'mandatory-field'}]}">
+        <div ng-messages="registerForm.password.$error" ng-messages-include="api-messages" class="error-message"></div>
+        <label id="labelpwd" for="password">{{ 'form.registration.label.password'|trans }}</label>
+        <input name="password"
+               id="password"
+               ng-model="user.password"
+               ng-blur="v(3, registerForm, user, validator.password)"
+               class="field"
+               type="password" />
+    </div>
+    <input type="hidden" ng-model="user.apixl" name="apixl" />
+    <div ng-if="registerForm.apixl.$invalid"
+         ng-messages="registerForm.apixl.$error"
+         ng-messages-include="api-messages"
+         class="api-messages-final">
+    </div>
+    <button ng-click="validateStep3(registerForm, user)">
+        <div ng-http-loader template="api-loader"></div>
+        {{ 'form.registration.cta.step3'|trans }}
+    </button>
+    <div class="terms-wording">
+        {{ 'form.registration.terms.text1'|trans|raw }}
+    </div>
+</div>

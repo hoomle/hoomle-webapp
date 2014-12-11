@@ -4,8 +4,8 @@ var errors              = require('../../validator/index').Errors,
     when                = require('when')
     superagent          = require('superagent');
 
-var IG_CLIENT_ID = 'c392826688064882b839a64f205d0207';
-var IG_CLIENT_SECRET = 'da7d0cf0286641e7985aaf4769af3e5c';
+var IG_CLIENT_ID = 'bbea8bf74fa945ef93e0ba66abb07eac';
+var IG_CLIENT_SECRET = '0fefb7ab5e634a9c80c6792d3c69bd90';
 var IG_CALLBACK_URL = 'http://localhost:5000/auth/instagram/callback';
 
 var auth = function(req, res, next) {

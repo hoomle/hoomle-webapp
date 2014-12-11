@@ -108,8 +108,8 @@ gulp.task('styles', function() {
       sourceMapBasepath: __dirname
     }))
     .on('error', console.error.bind(console))
-    .pipe($.autoprefixer({browsers: AUTOPREFIXER_BROWSERS}))
-    .pipe($.csscomb())
+    // .pipe($.autoprefixer({browsers: AUTOPREFIXER_BROWSERS}))
+    // .pipe($.csscomb())
     .pipe($.if(RELEASE, $.minifyCss()))
     .pipe(gulp.dest(DEST + '/css'))
     .pipe($.size({title: 'styles'}));

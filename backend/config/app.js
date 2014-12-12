@@ -22,15 +22,15 @@ app.set('views', __dirname + '/../views');
 app.set('view engine', 'ejs');
 app.use(express.static('build'));
 
-app.get('/auth/instagram', controllers.auth.instagram.auth);
-app.get('/auth/instagram/callback', controllers.auth.instagram.callback);
+app.get('/auth/instagram',              controllers.auth.instagram.auth);
+app.get('/auth/instagram/callback',     controllers.auth.instagram.callback);
 
-app.get('/register/instagram', controllers.register.instagram.index);
-app.get('/register', controllers.register.default.index);
-app.post('/register', controllers.register.handle.index);
+app.get('/register/instagram',          controllers.register.instagram.index);
+app.get('/register',                    controllers.register.default.index);
+app.post('/register',                   controllers.register.handle.index);
 
-app.route('/:username').get(controllers.user.index);
-app.route('/').get(controllers.default.landing);
+app.get('/:username',                   controllers.user.index);
+app.get('/',                            controllers.default.landing);
 
 // Handle error(s)
 app.use(controllers.default.errorHandler);

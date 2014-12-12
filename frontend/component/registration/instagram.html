@@ -1,0 +1,11 @@
+<div ng-controller="hoole.components.registration.instagram.ctrl">
+    <form>
+        <img ng-src="{{ values.photoUrl }}" alt="Profile photo" />
+        <input type="text" name="username" value="{{ values.username }}" />
+        <input type="text" name="display_name" value="{{ values.displayName }}" />
+        <input type="text" name="email" value="{{ values.email }}" />
+        <input type="password" name="password" />
+        <textarea name="bio">{{ values.bio }}</textarea>
+        <input type="submit" value="s'enregistrer" />
+    </form>
+</div>

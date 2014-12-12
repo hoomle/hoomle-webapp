@@ -15,7 +15,7 @@ var src = {
     images: 'frontend/images/**',
     styles: 'frontend/styles/**/*.{css,less}',
     style:  'frontend/styles/main.less',
-    views:  'frontend/component/**/*.{html}'
+    views:  'frontend/component/**/*.html'
 };
 
 var build = {
@@ -33,15 +33,15 @@ gulp.task('clean', del.bind(null, [build.root]));
 
 // Static files
 gulp.task('assets', function() {
-  return gulp.src(src.assets)
-      .pipe($.changed(build.root))
-      .pipe(gulp.dest(build.root))
-      .pipe($.size({title: 'assets'}));
+    gulp.src(src.assets)
+        .pipe($.changed(build.root))
+        .pipe(gulp.dest(build.root))
+        .pipe($.size({title: 'assets'}));
 });
 
 // Images
 gulp.task('images', function() {
-    return gulp.src(src.images)
+    gulp.src(src.images)
         .pipe($.changed(build.images))
         .pipe($.imagemin({
             progressive: true,
@@ -53,7 +53,7 @@ gulp.task('images', function() {
 
 // CSS style sheets
 gulp.task('styles', function() {
-    return gulp.src(src.style)
+    gulp.src(src.style)
         .pipe($.plumber())
         .pipe($.less({
             sourceMap: !RELEASE,
@@ -77,17 +77,19 @@ gulp.task('lint', function() {
 gulp.task('js', function() {
     // Concat all frontend javascript files
     gulp.src([
-        './node_modules/angular/angular.js',
-        './frontend/app.js',
-        './frontend/component/**/*.js'
-    ])
-    .pipe(concat('app.js'))
-    .pipe(gulp.dest(build.root));
+            './node_modules/lodash/dist/lodash.min.js',
+            './node_modules/angular/angular.js',
+            './frontend/app.js',
+            './frontend/component/**/*.js'
+        ])
+        .pipe(concat('app.js'))
+        .pipe(gulp.dest(build.root));
 });
 
 // Views task
 gulp.task('views', function() {
-    gulp.src(src.views).pipe(gulp.dest(build.views));
+    gulp.src([src.views])
+        .pipe(gulp.dest(build.views));
 });
 
 // Build the app from source code
@@ -119,7 +121,7 @@ gulp.task('serve', function(callback) {
             ], [
                 'js',
                 'lint'
-        ]);
+            ]);
         gulp.watch(src.root + '/**/*.*',    launchServer);
         gulp.watch('backend/**/*.*',        launchServer);
         callback();

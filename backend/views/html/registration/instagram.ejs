@@ -1,14 +1,11 @@
 <% include ../_partials/head.ejs %>
 <div id="wrapper">
     <p>Instagram regform.</p>
-    <form>
-        <img src="<%= photoUrl %>" alt="Profile photo" />
-        <input type="text" name="username" value="<%= username %>" />
-        <input type="text" name="display_name" value="<%= displayName %>" />
-        <input type="text" name="email" value="" />
-        <input type="password" name="password" value="" />
-        <textarea name="bio"><%= bio %></textarea>
-        <input type="submit" value="s'enregistrer" />
-    </form>
+    <hoole-regform-instagram
+            photoUrl="<%= photoUrl %>"
+            username="<%= username %>"
+            email=""
+            bio="kevin">
+    </hoole-regform-instagram>
 </div>
 <% include ../_partials/foot.ejs %>

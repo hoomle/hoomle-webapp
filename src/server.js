@@ -1,19 +1,35 @@
 'use strict';
 
-var _ = require('lodash');
-var path = require('path');
-var express = require('express');
-var React = require('react');
+/*
+ *  _                           _
+ * | |                         | |
+ * | |__   ___   ___  _ __ ___ | | ___
+ * | '_ \ / _ \ / _ \| '_ ` _ \| |/ _ \
+ * | | | | (_) | (_) | | | | | | |  __/
+ * |_| |_|\___/ \___/|_| |_| |_|_|\___|
+ *
+ *                                      (_)    _
+ *  ___  ___ _ ____   _____ _ __     ___ _  __| | ___
+ * / __|/ _ \ '__\ \ / / _ \ '__|   / __| |/ _` |/ _ \
+ * \__ \  __/ |   \ V /  __/ |      \__ \ | (_| |  __/
+ * |___/\___|_|    \_/ \___|_|      |___/_|\__,_|\___|
+ *
+ */
+
+import _ from 'lodash';
+import path from 'path';
+import express from 'express';
+import React from 'react';
+import ProfileComponent from './components/Profile';
+import Dispatcher from './core/Dispatcher';
+import ActionTypes from './constants/ActionTypes';
+import AppStore from './stores/AppStore';
 
 // Set global variables
 global.__DEV__ = process.env.NODE_ENV == 'development';
 global.__SERVER__ = true;
 
-var Profile = React.createFactory(require('./components/Profile'));
-var Dispatcher = require('./core/Dispatcher');
-var ActionTypes = require('./constants/ActionTypes');
-var AppStore = require('./stores/AppStore');
-
+var Profile = React.createFactory(ProfileComponent);
 var server = express();
 
 server.set('port', (process.env.PORT || 5000));

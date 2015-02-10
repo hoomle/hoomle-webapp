@@ -1,16 +1,30 @@
 'use strict';
 
-require('6to5/polyfill');
+/*
+ *  _                           _
+ * | |                         | |
+ * | |__   ___   ___  _ __ ___ | | ___
+ * | '_ \ / _ \ / _ \| '_ ` _ \| |/ _ \
+ * | | | | (_) | (_) | | | | | | |  __/
+ * |_| |_|\___/ \___/|_| |_| |_|_|\___|
+ *
+ *   __                 _           _     _
+ *  / _|               | |         (_)   | |
+ * | |_ _ __ ___  _ __ | |_     ___ _  __| | ___
+ * |  _| '__/ _ \| '_ \| __|   / __| |/ _` |/ _ \
+ * | | | | | (_) | | | | |_    \__ \ | (_| |  __/
+ * |_| |_|  \___/|_| |_|\__|   |___/_|\__,_|\___|
+ *
+ */
 
-var React = require('react');
-var emptyFunction = require('react/lib/emptyFunction');
-var Profile = require('./components/Profile');
-var Dispatcher = require('./core/Dispatcher');
-var AppActions = require('./actions/AppActions');
-var ActionTypes = require('./constants/ActionTypes');
+import '6to5/polyfill';
 
-// Export React so the dev tools can find it
-(window !== window.top ? window.top : window).React = React;
+import React from 'react';
+import emptyFunction from 'react/lib/emptyFunction';
+import Profile from './components/Profile';
+import Dispatcher from './core/Dispatcher';
+import AppActions from './actions/AppActions';
+import ActionTypes from './constants/ActionTypes';
 
 function run() {
   // Render the top-level React component

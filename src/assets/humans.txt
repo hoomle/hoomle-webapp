@@ -3,13 +3,14 @@
 
 # TEAM
 
-    <name> -- <role> -- <twitter>
+    Stan Chollet -- Software Engineer -- @tsunammis
 
 # THANKS
 
-    <name>
+    Adrien O, Aldo B, Axel M, Exuper O, Gauthier W, Joris C,
+    Loïc D, Ludo M, Matthieu R, Maxime D, Nico C
 
 # TECHNOLOGY COLOPHON
 
     HTML5, CSS3, JavaScript
-    React, Director, Bootstrap
+    React, Flux, Express JS

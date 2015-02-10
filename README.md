@@ -1,23 +1,6 @@
-# React / Flux &nbsp;Starter Kit
+# Hoomle Webapp
 
-[![Build Status](http://img.shields.io/travis/kriasoft/react-starter-kit/master.svg?style=flat)](http://travis-ci.org/kriasoft/react-starter-kit)
-[![Dependency Status](https://david-dm.org/kriasoft/react-starter-kit.svg?style=flat)](https://david-dm.org/kriasoft/react-starter-kit)
-[![devDependency Status](https://david-dm.org/kriasoft/react-starter-kit/dev-status.svg?style=flat)](https://david-dm.org/kriasoft/react-starter-kit#info=devDependencies)
-[![Tips](http://img.shields.io/gratipay/koistya.svg?style=flat)](https://gratipay.com/koistya)
-[![Gitter](http://img.shields.io/badge/chat-online-brightgreen.svg?style=flat)](https://gitter.im/kriasoft/react-starter-kit)
-
-> This project template is a skeleton for an [isomorphic](http://nerds.airbnb.com/isomorphic-javascript-future-web-apps/)
-> web application (SPA) based on Facebook's [React](https://facebook.github.io/react/)
-> library and [Flux](http://facebook.github.io/flux/) architecture. You can use
-> it to quickly bootstrap your web application projects. It contains only
-> client-side components and development tools and is recommended to be paired
-> with a server-side project similar to [ASP.NET Web Application Starter Kit](https://github.com/kriasoft/AspNet-Server-Template).
-
-[![Facebook React Starter Kit](https://dl.dropboxusercontent.com/u/16006521/Screens/facebook-react-starter-kit.png)](https://github.com/kriasoft/react-starter-kit)
-
-**Demo**: http://reactjs.kriasoft.com
-
-### Architecture
+## Architecture
 
 This project uses the original [Flux](facebook.github.io/flux/) architecture
 utilizing a unidirectional data flow.
@@ -123,14 +106,3 @@ $ npm test
  * [Jest - Painless Unit Testing](http://facebook.github.io/jest/)
  * [Flow - A static type checker for JavaScript](http://flowtype.org/)
  * [The Future of React](https://github.com/reactjs/react-future)
-
-### Support
-
-Have feedback, feature request or need help? Contact me on [codementor.io/koistya](https://www.codementor.io/koistya).
-
-### Copyright
-
-Source code is licensed under the MIT License (MIT). See [LICENSE.txt](./LICENSE.txt)
-file in the project root. Documentation to the project is licensed under the
-[CC BY 4.0](http://creativecommons.org/licenses/by/4.0/) license. React logo
-image is a trademark of Facebook, Inc.

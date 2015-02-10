@@ -1,10 +1,9 @@
 {
-  "name": "react-starter-kit",
-  "private": true,
-  "version": "0.0.0",
-  "description": "React / Flux  Starter Kit",
-  "repository": "https://github.com/kriasoft/react-starter-kit",
-  "license": "MIT",
+  "name": "hoomle-webapp",
+  "version": "0.1.0",
+  "description": "Hoomle / Isomorphic web application",
+  "repository": "https://github.com/hoomle/hoomle-webapp",
+  "license": "GPLv3",
   "dependencies": {
     "6to5": "3.5.3",
     "bootstrap": "3.3.2",

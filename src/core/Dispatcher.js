@@ -1,16 +1,8 @@
-/*
- * React.js Starter Kit
- * Copyright (c) 2014 Konstantin Tarkus (@koistya), KriaSoft LLC.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE.txt file in the root directory of this source tree.
- */
-
 'use strict';
 
-var Flux = require('flux');
-var PayloadSources = require('../constants/PayloadSources');
-var assign = require('react/lib/Object.assign');
+var Flux            = require('flux'),
+    PayloadSources  = require('../constants/PayloadSources'),
+    assign          = require('react/lib/Object.assign');
 
 /**
  * A singleton that operates as the central hub for application updates.

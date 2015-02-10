@@ -3,7 +3,7 @@
 require('./Profile.less');
 
 var React = require('react');
-var request = require('superagent');
+var http = require('superagent');
 
 var Profile = React.createClass({
 
@@ -18,7 +18,7 @@ var Profile = React.createClass({
     },
 
     componentDidMount() {
-        request.get('http://localhost:5000/api/v1/users/stan', function(response) {
+        http.get('http://localhost:5000/api/v1/users/stan', function(response) {
             if (this.isMounted()) {
                 this.setState({
                     displayName: response.body.displayName

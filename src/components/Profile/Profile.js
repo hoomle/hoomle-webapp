@@ -1,6 +1,6 @@
 'use strict';
 
-// require('./Profile.less');
+import './Profile.less';
 
 import React from 'react';
 import ProfileStore from '../../stores/ProfileStore';
@@ -8,8 +8,6 @@ import ProfileStore from '../../stores/ProfileStore';
 var Profile = React.createClass({
 
     getInitialState: function() {
-        console.log('initiale State of Profile');
-        console.log(JSON.stringify(ProfileStore.getState()));
         return ProfileStore.getState();
     },
 
@@ -26,11 +24,6 @@ var Profile = React.createClass({
     },
 
     render() {
-
-        console.log('render()');
-        console.log(JSON.stringify(this.state));
-        console.log('display name' + this.state.user.displayName);
-
         return (
             /* jshint ignore:start */
             <header className="Profile">

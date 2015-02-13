@@ -65,7 +65,9 @@ server.get('/api/v1/users/stan', function(req, res) {
 });
 
 server.listen(server.get('port'), function() {
-  console.log('The server is running at http://localhost:' + server.get('port'));
+    if (process.send) {
+        process.send('online');
+    } else {
+        console.log('The server is running at http://localhost:' + server.get('port'));
+    }
 });
-
-module.exports.server = server;

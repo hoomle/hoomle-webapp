@@ -2,15 +2,7 @@
 
 ## Architecture
 
-This project uses the original [Flux](facebook.github.io/flux/) architecture
-utilizing a unidirectional data flow.
-
-<img src="https://github.com/facebook/flux/raw/master/docs/img/flux-diagram-white-background.png" style="width: 100%;" />
-
- * [Flux for Stupid People](http://blog.andrewray.me/flux-for-stupid-people/) by [Andrew Ray](https://github.com/DelvarWorld)
- * [What is Flux?](http://fluxxor.com/what-is-flux.html) by [Brandon Tilley](https://github.com/BinaryMuse/)
- * [Rethinking Web App Development at Facebook](http://www.youtube.com/watch?v=nYkdrAPrdcw) by [Pete Hunt](https://github.com/petehunt)
- * [The State of Flux](https://reactjsnews.com/the-state-of-flux/) by [David Chang](http://davidandsuzi.com/)
+This project uses the original [Flux](facebook.github.io/flux/) architecture utilizing a unidirectional data flow.
 
 ### Directory Layout
 
@@ -27,6 +19,7 @@ utilizing a unidirectional data flow.
 │   ├── /constants/             # Enumerations used in action creators and stores
 │   ├── /core/                  # Core components (Flux dispatcher, base classes, utilities)
 │   ├── /stores/                # Stores contain the application state and logic
+│   ├── /styles/                # Styles
 │   ├── /app.js                 # The application's main file (entry point)
 ├── /test/                      # Unit, integration and load tests
 │   ├── /e2e/                   # End-to-end tests
@@ -38,11 +31,11 @@ utilizing a unidirectional data flow.
 
 ### Getting Started
 
-Just [clone](github-windows://openRepo/https://github.com/kriasoft/react-starter-kit) or [fork](https://github.com/kriasoft/react-starter-kit/fork) the repo and start hacking:
+Just [clone](https://github.com/hoomle/hoomle-webapp) the repo and start hacking:
 
 ```shell
-$ git clone -o upstream https://github.com/kriasoft/react-starter-kit.git MyApp
-$ cd MyApp
+$ git clone https://github.com/hoomle/hoomle-webapp hoomle-webapp
+$ cd hoomle-webapp
 $ npm install -g gulp           # Install Gulp task runner globally
 $ npm install                   # Install Node.js components listed in ./package.json
 ```
@@ -82,8 +75,8 @@ your own project:
 
 ```shell
 $ git checkout master
-$ git fetch upstream
-$ git merge upstream/master
+$ git fetch origin
+$ git merge origin/master
 $ npm install
 ```
 
@@ -95,14 +88,3 @@ Run unit tests powered by [Jest](https://facebook.github.io/jest/) with the foll
 ```shell
 $ npm test
 ```
-
-### Learn More
-
- * [Getting Started with React.js](http://facebook.github.io/react/)
- * [React.js Wiki on GitHub](https://github.com/facebook/react/wiki)
- * [React.js Questions on StackOverflow](http://stackoverflow.com/questions/tagged/reactjs)
- * [React.js Discussion Board](https://groups.google.com/forum/#!forum/reactjs)
- * [Flux Architecture for Building User Interfaces](http://facebook.github.io/flux/)
- * [Jest - Painless Unit Testing](http://facebook.github.io/jest/)
- * [Flow - A static type checker for JavaScript](http://flowtype.org/)
- * [The Future of React](https://github.com/reactjs/react-future)

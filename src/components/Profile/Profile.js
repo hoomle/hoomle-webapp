@@ -1,37 +1,40 @@
 'use strict';
 
-require('./Profile.less');
+// require('./Profile.less');
 
-var React = require('react');
-var http = require('superagent');
+import React from 'react';
+import ProfileStore from '../../stores/ProfileStore';
 
 var Profile = React.createClass({
 
-    propTypes: {
-        displayName: React.PropTypes.string.isRequired
+    getInitialState: function() {
+        console.log('initiale State of Profile');
+        console.log(JSON.stringify(ProfileStore.getState()));
+        return ProfileStore.getState();
     },
 
-    getInitialState() {
-        return {
-            displayName: this.props.displayName
-        };
+    componentDidMount: function() {
+        ProfileStore.onChange(this._onStoreChange);
     },
 
-    componentDidMount() {
-        http.get('http://localhost:5000/api/v1/users/stan', function(response) {
-            if (this.isMounted()) {
-                this.setState({
-                    displayName: response.body.displayName
-                });
-            }
-        }.bind(this));
+    componentWillUnmount: function() {
+        ProfileStore.off(this._onStoreChange);
+    },
+
+    _onStoreChange: function() {
+        this.setState(ProfileStore.getState());
     },
 
     render() {
+
+        console.log('render()');
+        console.log(JSON.stringify(this.state));
+        console.log('display name' + this.state.user.displayName);
+
         return (
             /* jshint ignore:start */
             <header className="Profile">
-                <h1 dangerouslySetInnerHTML={{__html: this.state.displayName}} />
+                <h1 dangerouslySetInnerHTML={{__html: this.state.user.displayName}} />
                 <span className="location">Orleans, France</span>
                 <div className="headline">Passionate about travel, software development and sport.
                     <br />

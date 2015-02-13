@@ -20,29 +20,23 @@
 import '6to5/polyfill';
 
 import React from 'react';
-import emptyFunction from 'react/lib/emptyFunction';
 import Profile from './components/Profile';
-import Dispatcher from './core/Dispatcher';
-import AppActions from './actions/AppActions';
-import ActionTypes from './constants/ActionTypes';
+import storeManager from './core/storeManager.js';
 
 function run() {
-  // Render the top-level React component
-  var props = {
-      displayName: 'stan'
-  };
-  var component = React.createElement(Profile, props);
-  var profile = React.render(component, document.getElementById('root'));
+    storeManager.loadContext(root.ReactCtx.Stores);
+    var component = React.createElement(new Profile());
+    React.render(component, document.getElementById('root'));
 }
 
 // Run the application when both DOM is ready
 // and page content is loaded
 Promise.all([
-  new Promise((resolve) => {
-    if (window.addEventListener) {
-      window.addEventListener('DOMContentLoaded', resolve);
-    } else {
-      window.attachEvent('onload', resolve);
-    }
-  })
+    new Promise((resolve) => {
+        if (window.addEventListener) {
+            window.addEventListener('DOMContentLoaded', resolve);
+        } else {
+            window.attachEvent('onload', resolve);
+        }
+    })
 ]).then(run);

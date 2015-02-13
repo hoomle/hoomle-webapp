@@ -19,11 +19,13 @@
 import _ from 'lodash';
 import path from 'path';
 import express from 'express';
+import expressState from 'express-state';
 import React from 'react';
-import ProfileComponent from './components/Profile';
 import Dispatcher from './core/Dispatcher';
+import storeManager from './core/storeManager.js';
+import ProfileComponent from './components/Profile';
 import ActionTypes from './constants/ActionTypes';
-import AppStore from './stores/AppStore';
+import profileActions from './actions/profileActions.js';
 
 // Set global variables
 global.__DEV__ = process.env.NODE_ENV == 'development';
@@ -32,23 +34,25 @@ global.__SERVER__ = true;
 var Profile = React.createFactory(ProfileComponent);
 var server = express();
 
+server.use(express.static(path.join(__dirname)));
 server.set('port', (process.env.PORT || 5000));
 server.engine('ejs', require('ejs').__express);
 server.set('views', __dirname + '/../src/views');
 server.set('view engine', 'ejs');
-server.use(express.static(path.join(__dirname)));
+
+server.set('state namespace', 'ReactCtx');
+expressState.extend(server);
 
 server.get('/stan', function(req, res) {
-
-    var profile = new Profile({
-        displayName: 'stan'
+    profileActions.loadProfile('stan', function() {
+        res.expose(storeManager.dumpContext(), 'Stores');
+        var data = {};
+        data.body = React.renderToString(new Profile());
+        res
+            .status(200)
+            .header("Content-Type", "text/html")
+            .render('index', data);
     });
-    var data = {};
-    data.body = React.renderToString(profile);
-    return res
-        .status(200)
-        .header("Content-Type", "text/html")
-        .render('index', data);
 });
 
 // Mock API

@@ -1,9 +1,9 @@
 'use strict';
 
-var Dispatcher = require('../core/Dispatcher');
-var ActionTypes = require('../constants/ActionTypes');
-var EventEmitter = require('eventemitter3');
-var assign = require('react/lib/Object.assign');
+import Dispatcher from '../core/Dispatcher';
+import ActionTypes from '../constants/ActionTypes';
+import EventEmitter from 'eventemitter3';
+import assign from 'react/lib/Object.assign';
 
 var CHANGE_EVENT = 'change';
 
@@ -12,15 +12,16 @@ var _loading = false;
 
 var ProfileStore = assign({}, EventEmitter.prototype, {
 
+    name: 'ProfileStore',
+
     getState() {
         return {
             user: _user,
             loading: _loading
-        }
+        };
     },
 
     loadUser(user) {
-        console.log('loadUser Store');
         _user = user;
         this.emitChange();
     },
@@ -41,13 +42,11 @@ var ProfileStore = assign({}, EventEmitter.prototype, {
         this.off(CHANGE_EVENT, callback);
     },
 
-    name: 'ProfileStore',
-
     serialize() {
         return {
             user: _user,
             loading: _loading
-        }
+        };
     },
 
     unserialize(payload) {
@@ -72,4 +71,3 @@ ProfileStore.dispatcherToken = Dispatcher.register((payload) => {
 });
 
 module.exports = ProfileStore;
-

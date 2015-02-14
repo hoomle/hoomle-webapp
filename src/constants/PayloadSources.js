@@ -1,6 +1,6 @@
 'use strict';
 
-var keyMirror = require('react/lib/keyMirror');
+import keyMirror from 'react/lib/keyMirror';
 
 var PayloadSources = keyMirror({
     VIEW_ACTION: null,

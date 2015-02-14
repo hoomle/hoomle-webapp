@@ -1,12 +1,11 @@
 'use strict';
 
-var Flux            = require('flux'),
-    PayloadSources  = require('../constants/PayloadSources'),
-    assign          = require('react/lib/Object.assign');
+import Flux from 'flux';
+import PayloadSources from '../constants/PayloadSources';
+import assign from 'react/lib/Object.assign';
 
 /**
- * A singleton that operates as the central hub for application updates.
- * For more information visit https://facebook.github.io/flux/
+ * Singleto of the only one dispatcher of the app
  */
 var Dispatcher = assign(new Flux.Dispatcher(), {
 

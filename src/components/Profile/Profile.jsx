@@ -1,10 +1,15 @@
 'use strict';
 
 import './Profile.less';
-
 import React from 'react';
 import ProfileStore from '../../stores/ProfileStore';
 
+/**
+ * Profile section
+ *
+ * @class Profile
+ * @constructor
+ */
 var Profile = React.createClass({
 
     getInitialState: function() {

@@ -16,42 +16,45 @@
  *
  */
 
-import _ from 'lodash';
 import path from 'path';
 import express from 'express';
 import expressState from 'express-state';
+import components from './components';
 import React from 'react';
-import Dispatcher from './core/Dispatcher';
 import storeManager from './core/storeManager.js';
-import ProfileComponent from './components/Profile';
-import ActionTypes from './constants/ActionTypes';
 import profileActions from './actions/profileActions.js';
 
 // Set global variables
-global.__DEV__ = process.env.NODE_ENV == 'development';
+global.__DEV__ = process.env.NODE_ENV === 'development';
 global.__SERVER__ = true;
 
-var Profile = React.createFactory(ProfileComponent);
 var server = express();
 
 server.use(express.static(path.join(__dirname)));
 server.set('port', (process.env.PORT || 5000));
-server.engine('ejs', require('ejs').__express);
-server.set('views', __dirname + '/../src/views');
-server.set('view engine', 'ejs');
+
+// The template EJS is currently disabled for the benetif of React
+// server.engine('ejs', require('ejs').__express);
+// server.set('views', __dirname + '/../src/views');
+// server.set('view engine', 'ejs');
 
 server.set('state namespace', 'ReactCtx');
 expressState.extend(server);
 
 server.get('/stan', function(req, res) {
     profileActions.loadProfile('stan', function() {
+
         res.expose(storeManager.dumpContext(), 'Stores');
-        var data = {};
-        data.body = React.renderToString(new Profile());
+
+        var html = React.renderToStaticMarkup(new components.HtmlComponent({
+            state: res.locals.state.toString(),
+            markup: React.renderToString(new components.ProfileComponent())
+        }));
+
         res
             .status(200)
-            .header("Content-Type", "text/html")
-            .render('index', data);
+            .header('Content-Type', 'text/html')
+            .send(html);
     });
 });
 

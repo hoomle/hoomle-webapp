@@ -18,15 +18,16 @@
  */
 
 import '6to5/polyfill';
-
 import React from 'react';
-import Profile from './components/Profile';
+import components from './components';
 import storeManager from './core/storeManager.js';
 
 function run() {
-    storeManager.loadContext(root.ReactCtx.Stores);
-    var component = React.createElement(new Profile());
-    React.render(component, document.getElementById('root'));
+    storeManager.loadContext(window.root.ReactCtx.Stores);
+    React.render(
+        new components.ProfileComponent(),
+        document.getElementById('app')
+    );
 }
 
 // Run the application when both DOM is ready

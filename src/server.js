@@ -20,7 +20,7 @@ import path from 'path';
 import express from 'express';
 import expressState from 'express-state';
 import components from './components';
-import React from 'react';
+import React from 'react/addons';
 import storeManager from './core/storeManager.js';
 import profileActions from './actions/profileActions.js';
 
@@ -59,11 +59,18 @@ server.get('/stan', function(req, res) {
 });
 
 // Mock API
-server.get('/api/v1/users/stan', function(req, res) {
+server.get('/api/v1/homepage/stan', function(req, res) {
     res
         .contentType('application/json')
         .send({
-            displayName: 'Stan Chollet'
+            displayName: 'Stan Chollet',
+            location: 'Orléans, France',
+            headline: 'Passionate about travel, software development and sport. <br /> Software Developer at @MeeticFrance',
+            photos: {
+                cover: 'http://localhost:5000/mock/cover.jpg',
+                profile: 'http://localhost:5000/mock/profile.png'
+            },
+            template: 'only-photo' // only-cover | cover-and-photo | only-photo
         });
 });
 

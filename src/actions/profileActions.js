@@ -13,7 +13,7 @@ module.exports = {
         });
 
         // TODO Refactor with a better API module
-        http.get('http://localhost:5000/api/v1/users/stan').accept('application/json').end(function (err, res) {
+        http.get('http://localhost:5000/api/v1/homepage/stan').accept('application/json').end(function (err, res) {
             if (err) {
                 Dispatcher.handleServerAction({
                     actionType: ActionTypes.LOAD_PROFILE_ERROR,

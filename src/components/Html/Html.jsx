@@ -18,6 +18,7 @@ var Html = React.createClass({
                     <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
                     <meta name="viewport" content="width=device-width, initial-scale=1" />
                     <link rel="stylesheet" href="/css/bootstrap.css" />
+                    <link rel="stylesheet" href="/css/Profile/Profile.css" />
                 </head>
                 <body>
                     <div id="app" dangerouslySetInnerHTML={{__html: this.props.markup}}></div>

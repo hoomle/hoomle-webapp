@@ -8,13 +8,11 @@ var del = require('del');
 var path = require('path');
 var runSequence = require('run-sequence');
 var webpack = require('webpack');
-var pagespeed = require('psi');
 var argv = require('minimist')(process.argv.slice(2));
 
 // Settings
 var DEST = './build';                         // The build output folder
 var RELEASE = !!argv.release;                 // Minimize and optimize during a build?
-var GOOGLE_ANALYTICS_ID = 'UA-XXXXX-X';       // https://www.google.com/analytics/web/
 var AUTOPREFIXER_BROWSERS = [                 // https://github.com/ai/autoprefixer
     'ie >= 10',
     'ie_mob >= 10',
@@ -46,9 +44,7 @@ gulp.task('vendor', function() {
 // Static files
 gulp.task('assets', function() {
     src.assets = [
-        'src/assets/**',
-        'src/content*/**/*.*',
-        'src/templates*/**/*.*'
+        'src/assets/**'
     ];
     return gulp.src(src.assets)
         .pipe($.changed(DEST))
@@ -58,8 +54,11 @@ gulp.task('assets', function() {
 
 // CSS style sheets
 gulp.task('styles', function() {
-    src.styles = 'src/styles/**/*.{css,less}';
-    return gulp.src('src/styles/bootstrap.less')
+    src.styles = [
+        'src/styles/bootstrap.less',
+        'src/components/**/*.{css,less}'
+    ];
+    return gulp.src(src.styles)
         .pipe($.plumber())
         .pipe($.less({
             sourceMap: !RELEASE,
@@ -140,7 +139,7 @@ gulp.task('serve', ['build:watch'], function(cb) {
                 }
                 if (!started) {
                     started = true;
-                    gulp.watch(src.server, function (file) {
+                    gulp.watch(src.server, function(file) {
                         $.util.log('Restarting development server.');
                         server.kill('SIGTERM');
                         server = startup();
@@ -181,35 +180,4 @@ gulp.task('sync', ['serve'], function(cb) {
     ), function(file) {
         browserSync.reload(path.relative(__dirname, file.path));
     });
-});
-
-// Deploy to GitHub Pages
-gulp.task('deploy', function() {
-
-    // Remove temp folder
-    if (argv.clean) {
-        var os = require('os');
-        var path = require('path');
-        var repoPath = path.join(os.tmpdir(), 'tmpRepo');
-        $.util.log('Delete ' + $.util.colors.magenta(repoPath));
-        del.sync(repoPath, {force: true});
-    }
-
-    return gulp.src(DEST + '/**/*')
-        .pipe($.if('**/robots.txt', !argv.production ? $.replace('Disallow:', 'Disallow: /') : $.util.noop()))
-        .pipe($.ghPages({
-            remoteUrl: 'https://github.com/{name}/{name}.github.io.git',
-            branch: 'master'
-        }));
-});
-
-// Run PageSpeed Insights
-gulp.task('pagespeed', function(cb) {
-    // Update the below URL to the public URL of your site
-    pagespeed.output('example.com', {
-        strategy: 'mobile'
-        // By default we use the PageSpeed Insights free (no API key) tier.
-        // Use a Google Developer API key if you have one: http://goo.gl/RkN0vE
-        // key: 'YOUR_API_KEY'
-    }, cb);
 });

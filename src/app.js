@@ -23,7 +23,7 @@ import components from './components';
 import storeManager from './core/storeManager.js';
 
 function run() {
-    storeManager.loadContext(window.root.ReactCtx.Stores);
+    storeManager.loadContext(window.ReactCtx.Stores);
     React.render(
         new components.ProfileComponent(),
         document.getElementById('app')

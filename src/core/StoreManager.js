@@ -1,9 +1,9 @@
 'use strict';
 
 import fluxIsomorphicHelpers from 'flux-isomorphic-helpers';
-import ProfileStore from '../stores/ProfileStore';
+import HomepageStore from '../stores/HomepageStore';
 
 var storeManager = new fluxIsomorphicHelpers.StoreManager();
-storeManager.add(ProfileStore);
+storeManager.add(HomepageStore);
 
 module.exports = storeManager;

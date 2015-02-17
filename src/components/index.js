@@ -1,10 +1,10 @@
 'use strict';
 
 import React from 'react';
-import Profile from './Profile';
+import Homepage from './Homepage';
 import Html from './Html';
 
 module.exports = {
-    ProfileComponent: React.createFactory(Profile),
+    HomepageComponent: React.createFactory(Homepage),
     HtmlComponent: React.createFactory(Html)
 };

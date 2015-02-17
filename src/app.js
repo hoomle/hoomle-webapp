@@ -25,7 +25,7 @@ import storeManager from './core/storeManager.js';
 function run() {
     storeManager.loadContext(window.ReactCtx.Stores);
     React.render(
-        new components.ProfileComponent(),
+        new components.HomepageComponent(),
         document.getElementById('app')
     );
 }

@@ -7,27 +7,27 @@ import assign from 'react/lib/Object.assign';
 
 var CHANGE_EVENT = 'change';
 
-var _user = {};
+var _homepage = {};
 var _loading = false;
 
-var ProfileStore = assign({}, EventEmitter.prototype, {
+var HomepageStore = assign({}, EventEmitter.prototype, {
 
-    name: 'ProfileStore',
+    name: 'HomepageStore',
 
     getState() {
         return {
-            user: _user,
+            homepage: _homepage,
             loading: _loading
         };
     },
 
-    loadUser(user) {
-        _user = user;
+    loadHomepage(homepage) {
+        _homepage = homepage;
         this.emitChange();
     },
 
-    getUser() {
-        return _user;
+    getHomepage() {
+        return _homepage;
     },
 
     emitChange() {
@@ -44,24 +44,24 @@ var ProfileStore = assign({}, EventEmitter.prototype, {
 
     serialize() {
         return {
-            user: _user,
+            homepage: _homepage,
             loading: _loading
         };
     },
 
     unserialize(payload) {
-        _user = payload.user;
+        _homepage = payload.homepage;
         _loading = payload.loading;
     }
 });
 
-ProfileStore.dispatcherToken = Dispatcher.register((payload) => {
+HomepageStore.dispatcherToken = Dispatcher.register((payload) => {
     var action = payload.action;
 
     switch (action.actionType) {
 
-        case ActionTypes.LOAD_PROFILE_SUCCESS:
-            ProfileStore.loadUser(action.user);
+        case ActionTypes.LOAD_HOMEPAGE_SUCCESS:
+            HomepageStore.loadHomepage(action.homepage);
             break;
 
         default:
@@ -70,4 +70,4 @@ ProfileStore.dispatcherToken = Dispatcher.register((payload) => {
 
 });
 
-module.exports = ProfileStore;
+module.exports = HomepageStore;

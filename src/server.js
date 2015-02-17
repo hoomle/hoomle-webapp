@@ -22,7 +22,7 @@ import expressState from 'express-state';
 import components from './components';
 import React from 'react/addons';
 import storeManager from './core/storeManager.js';
-import profileActions from './actions/profileActions.js';
+import homepageActions from './actions/homepageActions.js';
 
 // Set global variables
 global.__DEV__ = process.env.NODE_ENV === 'development';
@@ -42,13 +42,13 @@ server.set('state namespace', 'ReactCtx');
 expressState.extend(server);
 
 server.get('/stan', function(req, res) {
-    profileActions.loadProfile('stan', function() {
+    homepageActions.load('stan', function() {
 
         res.expose(storeManager.dumpContext(), 'Stores');
 
         var html = React.renderToStaticMarkup(new components.HtmlComponent({
             state: res.locals.state.toString(),
-            markup: React.renderToString(new components.ProfileComponent())
+            markup: React.renderToString(new components.HomepageComponent())
         }));
 
         res

@@ -32,18 +32,13 @@ var server = express();
 
 server.use(express.static(path.join(__dirname)));
 server.set('port', (process.env.PORT || 5000));
-
-// The template EJS is currently disabled for the benetif of React
-// server.engine('ejs', require('ejs').__express);
-// server.set('views', __dirname + '/../src/views');
-// server.set('view engine', 'ejs');
-
+// Configure the namespace of "express-state"
 server.set('state namespace', 'ReactCtx');
 expressState.extend(server);
 
 server.get('/stan', function(req, res) {
     homepageActions.load('stan', function() {
-
+        // Expose the context to the view
         res.expose(storeManager.dumpContext(), 'Stores');
 
         var html = React.renderToStaticMarkup(new components.HtmlComponent({
@@ -70,7 +65,10 @@ server.get('/api/v1/homepage/stan', function(req, res) {
                 cover: 'http://localhost:5000/mock/cover.jpg',
                 profile: 'http://localhost:5000/mock/profile.png'
             },
-            template: 'only-photo' // only-cover | cover-and-photo | only-photo
+            // only-cover | cover-and-photo | only-photo
+            // template: 'only-photo'
+            template: 'cover-and-photo'
+            // template: 'only-cover'
         });
 });
 

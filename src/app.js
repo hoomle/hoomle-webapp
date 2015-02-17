@@ -17,7 +17,7 @@
  *
  */
 
-import '6to5/polyfill';
+import 'babel/polyfill';
 import React from 'react';
 import components from './components';
 import storeManager from './core/storeManager.js';

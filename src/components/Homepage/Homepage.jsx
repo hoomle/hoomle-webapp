@@ -2,6 +2,7 @@
 
 import React from 'react/addons';
 import HomepageStore from '../../stores/HomepageStore';
+import Hooms from '../../components/Hooms';
 
 var cx = React.addons.classSet;
 
@@ -62,6 +63,7 @@ var Homepage = React.createClass({
                     <div className="filter" />
                 </header>
                 <div className="headline" dangerouslySetInnerHTML={{__html: this.state.homepage.headline}} />
+                <Hooms homepage={this.state.homepage.slug} />
             </div>
             /* jshint ignore:end */
         );

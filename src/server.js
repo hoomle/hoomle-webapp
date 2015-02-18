@@ -58,6 +58,7 @@ server.get('/api/v1/homepage/stan', function(req, res) {
     res
         .contentType('application/json')
         .send({
+            slug: 'stan',
             displayName: 'Stan Chollet',
             location: 'Orléans, France',
             headline: 'Passionate about travel, software development and sport. <br /> Software Developer at @MeeticFrance',
@@ -69,6 +70,33 @@ server.get('/api/v1/homepage/stan', function(req, res) {
             // template: 'only-photo'
             template: 'cover-and-photo'
             // template: 'only-cover'
+        });
+});
+
+server.get('/api/v1/homepage/stan/hooms', function(req, res) {
+    res
+        .contentType('application/json')
+        .send({
+            limit: 25,
+            offset: 0,
+            hooms: [
+                {
+                    id: '1234521421421',
+                    source: 'twitter',
+                    sourceUrl: 'http://source-url.com'
+                },
+                {
+                    id: '1234521421422',
+                    source: 'instagram',
+                    sourceUrl: 'http://source-url.com'
+                },
+                {
+                    id: '1234521421423',
+                    source: 'rss',
+                    sourceUrl: 'http://source-url.com',
+                    content: 'Faire du snorkeling à Koh Koh Phi Phi'
+                }
+            ]
         });
 });
 

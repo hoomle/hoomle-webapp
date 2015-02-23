@@ -23,7 +23,6 @@ var HomepageStore = assign({}, EventEmitter.prototype, {
 
     loadHomepage(homepage) {
         _homepage = homepage;
-        this.emitChange();
     },
 
     getHomepage() {
@@ -61,13 +60,16 @@ HomepageStore.dispatcherToken = Dispatcher.register((payload) => {
     switch (action.actionType) {
 
         case ActionTypes.LOAD_HOMEPAGE_SUCCESS:
+            console.log('DISPATCHER:HomepageStore action=' + payload.action.actionType);
             HomepageStore.loadHomepage(action.homepage);
             break;
 
         default:
-        // Do nothing
+            return true;
     }
 
+    HomepageStore.emitChange();
+    return true;
 });
 
 module.exports = HomepageStore;

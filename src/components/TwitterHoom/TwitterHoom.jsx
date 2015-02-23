@@ -1,7 +1,7 @@
 'use strict';
 
 import React from 'react/addons';
-
+import hoomAction from '../../actions/hoomActions';
 var cx = React.addons.classSet;
 
 /**
@@ -12,29 +12,50 @@ var cx = React.addons.classSet;
  */
 var TwitterHoom = React.createClass({
 
-    getInitialState: function() {
+    getInitialState() {
         return {
             id: this.props.id,
-            sourceUrl: this.props.sourceUrl
+            sourceUrl: this.props.sourceUrl,
+            loading: true,
+            embedHtml: null,
+            err: false
         };
     },
 
-    componentDidMount: function() {
-        // HoomStore.onChange(this._onStoreChange);
-        // hoomAction.load(this.props.homepage);
-    },
-
-    componentWillUnmount: function() {
-        // HoomStore.off(this._onStoreChange);
-    },
-
-    _onStoreChange: function() {
-        // this.setState(HoomStore.getStateForHomepage(this.props.homepage));
+    componentDidMount() {
+        var that = this;
+        hoomAction.getEmbedCode(this.props.id)
+            .then(function(hoom) {
+                var state = that.state;
+                state.embedHtml = hoom.html;
+                state.loading = false;
+                that.setState(state);
+            }, function() {
+                var state = that.state;
+                state.loading = false;
+                state.err = true;
+                that.setState(state);
+                console.log('error loading TwitterHoom(' + this.props.id + ')');
+            });
     },
 
     render() {
+        if (this.state.err) {
+            return null;
+        }
+
+        if (this.state.loading) {
+            return (
+                /* jshint ignore:start */
+                <div className="TwitterHoom loading">loading embed tweet ...</div>
+                /* jshint ignore:end */
+            );
+        }
+
         return (
-            <div className="TwitterHoom">Twitter hoom {this.props.id}</div>
+            /* jshint ignore:start */
+            <div className="TwitterHoom" dangerouslySetInnerHTML={{__html: this.state.embedHtml}} />
+            /* jshint ignore:end */
         );
     }
 

@@ -45,19 +45,17 @@ var HoomStore = assign({}, EventEmitter.prototype, {
     },
 
     initialLoadingHoomsForHomepage(homepageSlug) {
-        console.log('HoomStore:initialLoadingHoomsForHomepage() ' + homepageSlug);
+        console.log('HoomStore:initialLoadingHoomsForHomepage(' + homepageSlug + ')');
         _hooms[homepageSlug] = {
             loading: true,
             hooms: []
         };
-        this.emitChange();
     },
 
     loadHoomsForHomepage(homepageSlug, hooms) {
-        console.log('HoomStore:loadHooms() ' + homepageSlug);
+        console.log('HoomStore:loadHoomsForHomepage(' + homepageSlug + ')');
         _hooms[homepageSlug].loading = false;
         _hooms[homepageSlug].hooms = hooms;
-        this.emitChange();
     },
 
     getHooms() {
@@ -87,23 +85,26 @@ var HoomStore = assign({}, EventEmitter.prototype, {
 });
 
 HoomStore.dispatcherToken = Dispatcher.register((payload) => {
-    console.log('HoomStore:dispatcherToken');
     var action = payload.action;
 
     switch (action.actionType) {
 
         case ActionTypes.LOAD_HOOMS:
+            console.log('DISPATCHER:HoomStore action=' + payload.action.actionType);
             HoomStore.initialLoadingHoomsForHomepage(action.homepageSlug);
             break;
 
         case ActionTypes.LOAD_HOOMS_SUCCESS:
+            console.log('DISPATCHER:HoomStore action=' + payload.action.actionType);
             HoomStore.loadHoomsForHomepage(action.homepageSlug, action.hooms);
             break;
 
         default:
-        // Do nothing
+            return true;
     }
 
+    HoomStore.emitChange();
+    return true;
 });
 
 module.exports = HoomStore;

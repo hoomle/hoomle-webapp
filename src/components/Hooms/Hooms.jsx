@@ -68,7 +68,7 @@ var Hooms = React.createClass({
         } else if (hoom.source == 'rss') {
             return (
                 /* jshint ignore:start */
-                <RssHoom key={hoom.id} id={hoom.id} source-url={hoom.sourceUrl} />
+                <RssHoom key={hoom.id} id={hoom.id} sourceUrl={hoom.sourceUrl} title={hoom.title} />
                 /* jshint ignore:end */
             );
         }

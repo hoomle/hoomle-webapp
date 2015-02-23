@@ -9,7 +9,11 @@ var ActionTypes = keyMirror({
 
     LOAD_HOOMS: null,
     LOAD_HOOMS_SUCCESS: null,
-    LOAD_HOOMS_ERROR: null
+    LOAD_HOOMS_ERROR: null,
+
+    LOAD_HOOM_EMBED_CODE: null,
+    LOAD_HOOM_EMBED_CODE_SUCCESS: null,
+    LOAD_HOOM_EMBED_CODE_ERROR: null
 });
 
 module.exports = ActionTypes;

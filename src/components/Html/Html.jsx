@@ -11,6 +11,20 @@ import React from 'react';
 var Html = React.createClass({
 
     render() {
+        var twitterScript = 'window.twttr = (function(d, s, id) {' +
+            'var js, fjs = d.getElementsByTagName(s)[0],' +
+            't = window.twttr || {};' +
+            'if (d.getElementById(id)) return;' +
+            'js = d.createElement(s);' +
+            'js.id = id;' +
+            'js.src = "https://platform.twitter.com/widgets.js";' +
+            'fjs.parentNode.insertBefore(js, fjs);' +
+            't._e = [];' +
+            't.ready = function(f) {' +
+            't._e.push(f);' +
+            '};' +
+            'return t;' +
+            '}(document, "script", "twitter-wjs"));';
         return (
             <html className="no-js">
                 <head>
@@ -24,6 +38,8 @@ var Html = React.createClass({
                     <div id="app" dangerouslySetInnerHTML={{__html: this.props.markup}}></div>
                     <script dangerouslySetInnerHTML={{__html: this.props.state}}></script>
                     <script src="/app.js"></script>
+                    <script dangerouslySetInnerHTML={{__html: twitterScript}}></script>
+                    <script src="//platform.instagram.com/en_US/embeds.js"></script>
                 </body>
             </html>
         );

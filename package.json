@@ -21,9 +21,9 @@
     "lodash": "3.2.0",
     "react": "0.12.2",
     "superagent": "0.21.0",
-    "when": "^3.7.2",
-
-
+    "when": "^3.7.2"
+  },
+  "devDependencies": {
     "autoprefixer-loader": "^1.1.0",
     "babel-core": "^4.0.2",
     "babel-loader": "^4.0.0",
@@ -66,9 +66,6 @@
     "webpack": "^1.5.3",
     "webpack-dev-server": "^1.7.0"
   },
-  "devDependencies": {
-
-  },
   "jest": {
     "rootDir": "./src",
     "scriptPreprocessor": "../preprocessor.js",
@@ -78,8 +75,6 @@
   },
   "scripts": {
     "start": "node build/server.js",
-    "build": "gulp build",
-    "postinstall": "npm run build",
     "test": "jshint && jest",
     "jshint": "jshint ./src gulpfile.js",
     "preupdate-webdriver": "npm install",

@@ -6,8 +6,6 @@ import EventEmitter from 'eventemitter3';
 import assign from 'react/lib/Object.assign';
 import _ from 'lodash';
 
-var CHANGE_EVENT = 'change';
-
 /**
  * {
  *     'homepage_slug': [{
@@ -15,8 +13,8 @@ var CHANGE_EVENT = 'change';
  *          hooms: [{
  *              loading: true|false,
  *              id: '1234521421421',
-                source: 'twitter',
-                sourceUrl: 'http://source-url.com'
+ *              source: 'twitter',
+ *              sourceUrl: 'http://source-url.com'
  *          }, { ... }
  *          ]
  *     }]
@@ -24,6 +22,7 @@ var CHANGE_EVENT = 'change';
  */
 var _hooms = {};
 var _loading = false;
+var CHANGE_EVENT = 'change';
 
 var HoomStore = assign({}, EventEmitter.prototype, {
 
@@ -45,7 +44,6 @@ var HoomStore = assign({}, EventEmitter.prototype, {
     },
 
     initialLoadingHoomsForHomepage(homepageSlug) {
-        console.log('HoomStore:initialLoadingHoomsForHomepage(' + homepageSlug + ')');
         _hooms[homepageSlug] = {
             loading: true,
             hooms: []
@@ -53,7 +51,6 @@ var HoomStore = assign({}, EventEmitter.prototype, {
     },
 
     loadHoomsForHomepage(homepageSlug, hooms) {
-        console.log('HoomStore:loadHoomsForHomepage(' + homepageSlug + ')');
         _hooms[homepageSlug].loading = false;
         _hooms[homepageSlug].hooms = hooms;
     },
@@ -90,12 +87,10 @@ HoomStore.dispatcherToken = Dispatcher.register((payload) => {
     switch (action.actionType) {
 
         case ActionTypes.LOAD_HOOMS:
-            console.log('DISPATCHER:HoomStore action=' + payload.action.actionType);
             HoomStore.initialLoadingHoomsForHomepage(action.homepageSlug);
             break;
 
         case ActionTypes.LOAD_HOOMS_SUCCESS:
-            console.log('DISPATCHER:HoomStore action=' + payload.action.actionType);
             HoomStore.loadHoomsForHomepage(action.homepageSlug, action.hooms);
             break;
 

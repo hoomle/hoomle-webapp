@@ -1,8 +1,7 @@
 'use strict';
 
 import React from 'react/addons';
-import hoomAction from '../../actions/hoomActions';
-var cx = React.addons.classSet;
+import hoomsActions from '../../actions/hoomsActions';
 
 /**
  * InstagramHoom section
@@ -24,7 +23,7 @@ var InstagramHoom = React.createClass({
 
     componentDidMount() {
         var that = this;
-        hoomAction.getEmbedCode(this.props.id)
+        hoomsActions.getOembedByHoom(this.props.id)
             .then(function(hoom) {
                 var state = that.state;
                 state.embedHtml = hoom.html;

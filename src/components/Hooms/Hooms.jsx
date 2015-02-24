@@ -2,12 +2,10 @@
 
 import React from 'react/addons';
 import HoomStore from '../../stores/HoomStore';
-import hoomAction from '../../actions/hoomActions';
+import hoomsActions from '../../actions/hoomsActions';
 import TwitterHoom from '../../components/TwitterHoom';
 import InstagramHoom from '../../components/InstagramHoom';
 import RssHoom from '../../components/RssHoom';
-
-var cx = React.addons.classSet;
 
 /**
  * Hooms section
@@ -23,7 +21,7 @@ var Hooms = React.createClass({
 
     componentDidMount: function() {
         HoomStore.onChange(this._onStoreChange);
-        hoomAction.load(this.props.homepage);
+        hoomsActions.load(this.props.homepage);
     },
 
     componentWillUnmount: function() {

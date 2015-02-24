@@ -5,10 +5,9 @@ import ActionTypes from '../constants/ActionTypes';
 import EventEmitter from 'eventemitter3';
 import assign from 'react/lib/Object.assign';
 
-var CHANGE_EVENT = 'change';
-
 var _homepage = {};
 var _loading = false;
+var CHANGE_EVENT = 'change';
 
 var HomepageStore = assign({}, EventEmitter.prototype, {
 

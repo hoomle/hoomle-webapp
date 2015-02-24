@@ -13,6 +13,7 @@
     "bootstrap": "3.3.2",
     "eventemitter3": "0.1.6",
     "express": "4.11.2",
+    "express-state": "^1.2.0",
     "flux": "2.0.1",
     "flux-isomorphic-helpers": "^0.1.1",
     "front-matter": "0.2.1",

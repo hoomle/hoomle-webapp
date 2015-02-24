@@ -3,9 +3,9 @@
 import AppConfiguration from '../services/AppConfiguration';
 
 var appConfiguration = new AppConfiguration(
-    process.env.HOOMLE_WEBAPP_ENV || 'dev',
-    process.env.HOOMLE_WEBAPP_PORT || 5000,
-    process.env.HOOMLE_WEBAPP_APIMOCK || true
+    process.env.ENV || 'dev',
+    process.env.PORT || 5000,
+    true
 );
 
 // Set global variables (used by React)

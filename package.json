@@ -1,9 +1,9 @@
 {
-  "name": "hoomle-webapp",
+  "name": "hoomle",
   "version": "0.1.0",
   "description": "Hoomle / Isomorphic web application",
-  "repository": "https://github.com/hoomle/hoomle-webapp",
-  "license": "GPLv3",
+  "repository": "https://github.com/tsunammis/hoomle",
+  "license": "MIT",
   "engines": {
     "node": ">= 0.10",
     "npm": ">= 2.1"
@@ -73,7 +73,9 @@
     ]
   },
   "scripts": {
-    "start": "gulp",
+    "start": "node build/server.js",
+    "build": "gulp build",
+    "postinstall": "npm run build",
     "test": "jshint && jest",
     "jshint": "jshint ./src gulpfile.js",
     "preupdate-webdriver": "npm install",

@@ -46,14 +46,14 @@ var TwitterHoom = React.createClass({
         if (this.state.loading) {
             return (
                 /* jshint ignore:start */
-                <div className="TwitterHoom loading">loading embed tweet ...</div>
+                <div className="Hoom TwitterHoom loading">loading embed tweet ...</div>
                 /* jshint ignore:end */
             );
         }
 
         return (
             /* jshint ignore:start */
-            <div className="TwitterHoom" dangerouslySetInnerHTML={{__html: this.state.embedHtml}} />
+            <div className="Hoom TwitterHoom" dangerouslySetInnerHTML={{__html: this.state.embedHtml}} />
             /* jshint ignore:end */
         );
     }

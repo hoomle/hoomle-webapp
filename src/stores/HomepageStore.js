@@ -59,7 +59,6 @@ HomepageStore.dispatcherToken = Dispatcher.register((payload) => {
     switch (action.actionType) {
 
         case ActionTypes.LOAD_HOMEPAGE_SUCCESS:
-            console.log('DISPATCHER:HomepageStore action=' + payload.action.actionType);
             HomepageStore.loadHomepage(action.homepage);
             break;
 

@@ -1,3 +1,28 @@
 .TwitterHoom {
+  width: auto;
+
+  blockquote.twitter-tweet {
+    // Override the inline styles of iframe
+    width: auto !important;
+    text-align: center;
+    margin: 0;
+    padding: 5px;
+
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgb(238, 238, 238) rgb(221, 221, 221) rgb(187, 187, 187);
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.14902) 0px 1px 3px;
+
+    p {
+      padding: 0px;
+      margin: 0px;
+    }
+  }
+
+  iframe.twitter-tweet-rendered {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
 
 }

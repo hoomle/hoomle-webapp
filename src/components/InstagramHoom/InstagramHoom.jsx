@@ -52,14 +52,14 @@ var InstagramHoom = React.createClass({
         if (this.state.loading) {
             return (
                 /* jshint ignore:start */
-                <div className="InstagramHoom loading">loading embed instagram ...</div>
+                <div className="Hoom InstagramHoom loading">loading embed instagram ...</div>
                 /* jshint ignore:end */
             );
         }
 
         return (
             /* jshint ignore:start */
-            <div className="InstagramHoom" dangerouslySetInnerHTML={{__html: this.state.embedHtml}} />
+            <div className="Hoom InstagramHoom" dangerouslySetInnerHTML={{__html: this.state.embedHtml}} />
             /* jshint ignore:end */
         );
     }

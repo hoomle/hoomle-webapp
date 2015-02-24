@@ -1,6 +1,7 @@
 'use strict';
 
 import React from 'react';
+import Footer from '../Footer';
 
 /**
  * React class to handle the rendering of the HTML head section
@@ -35,6 +36,7 @@ var Html = React.createClass({
                 </head>
                 <body>
                     <div id="app" dangerouslySetInnerHTML={{__html: this.props.markup}}></div>
+                    <Footer />
                     <script dangerouslySetInnerHTML={{__html: this.props.state}}></script>
                     <script src="/app.js"></script>
                     <script dangerouslySetInnerHTML={{__html: twitterScript}}></script>

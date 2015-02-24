@@ -68,6 +68,7 @@ gulp.task('styles', function() {
         .pipe($.autoprefixer({browsers: AUTOPREFIXER_BROWSERS}))
         .pipe($.csscomb())
         .pipe($.if(RELEASE, $.minifyCss()))
+        .pipe($.concat('styles.css'))
         .pipe(gulp.dest(DEST + '/css'))
         .pipe($.size({title: 'styles'}));
 });

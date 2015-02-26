@@ -1,14 +1,12 @@
 'use strict';
 
-import Dispatcher from '../core/Dispatcher';
-import ActionTypes from '../constants/ActionTypes';
-import config from '../config';
-
-var hoomleApi = config.hoomleApi;
+var Dispatcher = require('../core/Dispatcher');
+var ActionTypes = require('../constants/ActionTypes');
+var hoomleApi = require('../config').hoomleApi;
 
 module.exports = {
 
-    load(slug) {
+    load: function(slug) {
         Dispatcher.handleViewAction({
             actionType: ActionTypes.LOAD_HOMEPAGE,
             homepage: slug

@@ -1,7 +1,7 @@
 'use strict';
 
-import React from 'react/addons';
-import hoomsActions from '../../actions/hoomsActions';
+var React = require('react/addons');
+var hoomsActions = require('../../actions/hoomsActions');
 
 /**
  * InstagramHoom section
@@ -11,7 +11,7 @@ import hoomsActions from '../../actions/hoomsActions';
  */
 var InstagramHoom = React.createClass({
 
-    getInitialState() {
+    getInitialState: function() {
         return {
             id: this.props.id,
             sourceUrl: this.props.sourceUrl,
@@ -21,7 +21,7 @@ var InstagramHoom = React.createClass({
         };
     },
 
-    componentDidMount() {
+    componentDidMount: function() {
         var that = this;
         hoomsActions.getOembedByHoom(this.props.id)
             .then(function(hoom) {
@@ -38,13 +38,13 @@ var InstagramHoom = React.createClass({
             });
     },
 
-    componentDidUpdate() {
+    componentDidUpdate: function() {
         if (this.state.loading === false && this.state.err === false) {
             instgrm.Embeds.process();
         }
     },
 
-    render() {
+    render: function() {
         if (this.state.err) {
             return null;
         }

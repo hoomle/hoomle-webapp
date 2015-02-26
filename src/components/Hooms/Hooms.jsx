@@ -1,11 +1,11 @@
 'use strict';
 
-import React from 'react/addons';
-import HoomStore from '../../stores/HoomStore';
-import hoomsActions from '../../actions/hoomsActions';
-import TwitterHoom from '../../components/TwitterHoom';
-import InstagramHoom from '../../components/InstagramHoom';
-import RssHoom from '../../components/RssHoom';
+var React = require('react/addons');
+var HoomStore = require('../../stores/HoomStore');
+var hoomsActions = require('../../actions/hoomsActions');
+var TwitterHoom = require('../../components/TwitterHoom');
+var InstagramHoom = require('../../components/InstagramHoom');
+var RssHoom = require('../../components/RssHoom');
 
 /**
  * Hooms section
@@ -32,7 +32,7 @@ var Hooms = React.createClass({
         this.setState(HoomStore.getStateForHomepage(this.props.homepage));
     },
 
-    render() {
+    render: function() {
         if (this.state.loading) {
             return (
                 /* jshint ignore:start */
@@ -50,7 +50,7 @@ var Hooms = React.createClass({
         );
     },
 
-    renderHoom(hoom) {
+    renderHoom: function(hoom) {
         if (hoom.source == 'twitter') {
             return (
                 /* jshint ignore:start */

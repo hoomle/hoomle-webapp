@@ -1,6 +1,6 @@
 'use strict';
 
-import React from 'react/addons';
+var React = require('react/addons');
 
 /**
  * RssHoom section
@@ -18,7 +18,7 @@ var RssHoom = React.createClass({
         };
     },
 
-    render() {
+    render: function() {
         return (
             /* jshint ignore:start */
             <div className="Hoom RssHoom">

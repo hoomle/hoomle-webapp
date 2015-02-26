@@ -1,10 +1,10 @@
 'use strict';
 
-import Dispatcher from '../core/Dispatcher';
-import ActionTypes from '../constants/ActionTypes';
-import EventEmitter from 'eventemitter3';
-import assign from 'react/lib/Object.assign';
-import _ from 'lodash';
+var Dispatcher = require('../core/Dispatcher');
+var ActionTypes = require('../constants/ActionTypes');
+var EventEmitter = require('eventemitter3');
+var assign = require('react/lib/Object.assign');
+var _ = require('lodash');
 
 /**
  * {
@@ -28,7 +28,7 @@ var HoomStore = assign({}, EventEmitter.prototype, {
 
     name: 'HoomStore',
 
-    getStateForHomepage(homepageSlug) {
+    getStateForHomepage: function(homepageSlug) {
         if (!_.has(_hooms, homepageSlug)) {
             this.initialLoadingHoomsForHomepage(homepageSlug);
         }
@@ -36,47 +36,47 @@ var HoomStore = assign({}, EventEmitter.prototype, {
         return _hooms[homepageSlug];
     },
 
-    getState() {
+    getState: function() {
         return {
             hooms: _hooms,
             loading: _loading
         };
     },
 
-    initialLoadingHoomsForHomepage(homepageSlug) {
+    initialLoadingHoomsForHomepage: function(homepageSlug) {
         _hooms[homepageSlug] = {
             loading: true,
             hooms: []
         };
     },
 
-    loadHoomsForHomepage(homepageSlug, hooms) {
+    loadHoomsForHomepage: function(homepageSlug, hooms) {
         _hooms[homepageSlug].loading = false;
         _hooms[homepageSlug].hooms = hooms;
     },
 
-    getHooms() {
+    getHooms: function() {
         return _hooms;
     },
 
-    emitChange() {
+    emitChange: function() {
         return this.emit(CHANGE_EVENT);
     },
 
-    onChange(callback) {
+    onChange: function(callback) {
         this.on(CHANGE_EVENT, callback);
     },
 
-    off(callback) {
+    off: function(callback) {
         this.off(CHANGE_EVENT, callback);
     },
 
-    serialize() {
+    serialize: function() {
         // Need to implement
         return {};
     },
 
-    unserialize(payload) {
+    unserialize: function(payload) {
         // Need to implement
     }
 });

@@ -8,7 +8,7 @@ module.exports = function(server) {
             .send({
                 slug: 'stan',
                 displayName: 'Stan Chollet',
-                location: 'Orléans, France',
+                location: 'Paris & Orléans, France',
                 headline: 'Passionate about travel, software development and sport. <br /> Software Developer at @MeeticFrance',
                 photos: {
                     cover: 'http://localhost:5000/mock/cover.jpg',

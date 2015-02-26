@@ -1,7 +1,7 @@
 'use strict';
 
-import React from 'react';
-import Footer from '../Footer';
+var React = require('react');
+var Footer = require('../Footer');
 
 /**
  * React class to handle the rendering of the HTML head section
@@ -11,7 +11,7 @@ import Footer from '../Footer';
  */
 var Html = React.createClass({
 
-    render() {
+    render: function() {
         var twitterScript = 'window.twttr = (function(d, s, id) {' +
             'var js, fjs = d.getElementsByTagName(s)[0],' +
             't = window.twttr || {};' +

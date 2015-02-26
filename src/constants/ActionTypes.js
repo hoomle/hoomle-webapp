@@ -1,6 +1,6 @@
 'use strict';
 
-import keyMirror from 'react/lib/keyMirror';
+var keyMirror = require('react/lib/keyMirror');
 
 var ActionTypes = keyMirror({
     LOAD_HOMEPAGE: null,

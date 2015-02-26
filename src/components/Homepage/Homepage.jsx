@@ -1,8 +1,8 @@
 'use strict';
 
-import React from 'react/addons';
-import HomepageStore from '../../stores/HomepageStore';
-import Hooms from '../../components/Hooms';
+var React = require('react/addons');
+var HomepageStore = require('../../stores/HomepageStore');
+var Hooms = require('../../components/Hooms');
 
 var cx = React.addons.classSet;
 
@@ -30,7 +30,7 @@ var Homepage = React.createClass({
         this.setState(HomepageStore.getState());
     },
 
-    render() {
+    render: function() {
         var photo = null;
         var headerStyle = {};
 

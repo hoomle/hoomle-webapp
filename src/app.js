@@ -17,10 +17,10 @@
  *
  */
 
-import 'babel/polyfill';
-import React from 'react';
-import components from './components';
-import storeManager from './core/storeManager.js';
+require('babel/polyfill');
+var React = require('react');
+var components = require('./components');
+var storeManager = require('./core/storeManager.js');
 
 function run() {
     storeManager.loadContext(window.ReactCtx.Stores);

@@ -1,6 +1,6 @@
 'use strict';
 
-import React from 'react';
+var React = require('react');
 
 /**
  * React class to handle the rendering of the Footer section
@@ -10,7 +10,7 @@ import React from 'react';
  */
 var Footer = React.createClass({
 
-    render() {
+    render: function() {
         return (
             <div className="Footer">
                 <ul>

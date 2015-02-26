@@ -1,6 +1,6 @@
 'use strict';
 
-import AppConfiguration from '../services/AppConfiguration';
+var AppConfiguration = require('../services/AppConfiguration');
 
 var appConfiguration = new AppConfiguration(
     process.env.ENV || 'dev',

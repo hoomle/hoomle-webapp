@@ -1,11 +1,11 @@
 'use strict';
 
-import Flux from 'flux';
-import PayloadSources from '../constants/PayloadSources';
-import assign from 'react/lib/Object.assign';
+var Flux = require('flux');
+var PayloadSources = require('../constants/PayloadSources');
+var assign = require('react/lib/Object.assign');
 
 /**
- * Singleto of the only one dispatcher of the app
+ * Singleton of the only one dispatcher of the app
  */
 var Dispatcher = assign(new Flux.Dispatcher(), {
 
@@ -13,7 +13,7 @@ var Dispatcher = assign(new Flux.Dispatcher(), {
      * @param {object} action The details of the action, including the action's
      * type and additional data coming from the server.
      */
-    handleServerAction(action) {
+    handleServerAction: function(action) {
         var payload = {
             source: PayloadSources.SERVER_ACTION,
             action: action
@@ -25,7 +25,7 @@ var Dispatcher = assign(new Flux.Dispatcher(), {
      * @param {object} action The details of the action, including the action's
      * type and additional data coming from the view.
      */
-    handleViewAction(action) {
+    handleViewAction: function(action) {
         var payload = {
             source: PayloadSources.VIEW_ACTION,
             action: action

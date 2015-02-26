@@ -1,14 +1,11 @@
 'use strict';
 
-class Configuration {
-
-    constructor(baseUrl) {
-        this.baseUrl = baseUrl;
-    }
-
-    getBaseUrl() {
-        return this.baseUrl;
-    }
+function Configuration(baseUrl) {
+    this.baseUrl = baseUrl;
 }
+
+Configuration.prototype.getBaseUrl = function() {
+    return this.baseUrl;
+};
 
 module.exports = Configuration;

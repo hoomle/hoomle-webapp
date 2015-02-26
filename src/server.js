@@ -16,14 +16,14 @@
  *
  */
 
-import path from 'path';
-import express from 'express';
-import expressState from 'express-state';
-import components from './components';
-import React from 'react/addons';
-import storeManager from './core/storeManager.js';
-import homepageActions from './actions/homepageActions';
-import appConfiguration from './config/appConfiguration';
+var path = require('path');
+var express = require('express');
+var expressState = require('express-state');
+var components = require('./components');
+var React = require('react/addons');
+var storeManager = require('./core/storeManager.js');
+var homepageActions = require('./actions/homepageActions');
+var appConfiguration = require('./config/appConfiguration');
 
 var server = express();
 
@@ -34,7 +34,7 @@ server.set('port', appConfiguration.getPort());
 server.set('state namespace', 'ReactCtx');
 expressState.extend(server);
 
-server.get('/stan', function(req, res) {
+server.get('/', function(req, res) {
     homepageActions.load('stan').then(function() {
             // Expose the context to the view
             res.expose(storeManager.dumpContext(), 'Stores');

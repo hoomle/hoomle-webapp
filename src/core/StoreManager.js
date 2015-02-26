@@ -1,8 +1,8 @@
 'use strict';
 
-import fluxIsomorphicHelpers from 'flux-isomorphic-helpers';
-import HomepageStore from '../stores/HomepageStore';
-import HoomStore from '../stores/HoomStore';
+var fluxIsomorphicHelpers = require('flux-isomorphic-helpers');
+var HomepageStore = require('../stores/HomepageStore');
+var HoomStore = require('../stores/HoomStore');
 
 var storeManager = new fluxIsomorphicHelpers.StoreManager();
 storeManager.add(HomepageStore);

@@ -1,20 +1,13 @@
 'use strict';
 
-import React from 'react';
-import Footer from './Footer';
-import InstagramHoom from './InstagramHoom';
-import Homepage from './Homepage';
-import Hooms from './Hooms';
-import Html from './Html';
-import RssHoom from './RssHoom';
-import TwitterHoom from './TwitterHoom';
+var React = require('react');
 
 module.exports = {
-    FooterComponent         : React.createFactory(Footer),
-    InstagramHoomComponent  : React.createFactory(InstagramHoom),
-    HomepageComponent       : React.createFactory(Homepage),
-    HoomsComponent          : React.createFactory(Hooms),
-    HtmlComponent           : React.createFactory(Html),
-    RssHoomComponent        : React.createFactory(RssHoom),
-    TwitterHoomComponent    : React.createFactory(TwitterHoom)
+    FooterComponent         : React.createFactory(require('./Footer')),
+    InstagramHoomComponent  : React.createFactory(require('./InstagramHoom')),
+    HomepageComponent       : React.createFactory(require('./Homepage')),
+    HoomsComponent          : React.createFactory(require('./Hooms')),
+    HtmlComponent           : React.createFactory(require('./Html')),
+    RssHoomComponent        : React.createFactory(require('./RssHoom')),
+    TwitterHoomComponent    : React.createFactory(require('./TwitterHoom'))
 };

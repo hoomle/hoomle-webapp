@@ -1,5 +1,6 @@
 .Homepage {
   text-align: center;
+  padding-top: 100px;
 
   header {
     background-size: cover;
@@ -7,6 +8,7 @@
     background-position: center center;
     padding-bottom: 1px;
     position: relative;
+    margin: 0 20px;
 
     .filter {
       position: absolute;
@@ -24,18 +26,36 @@
       width: 100%;
     }
 
-    .mainPhoto {
+    .avatarContainer {
+      box-shadow: 0 0 1px rgba(0,0,0,0.3);
+      background-color: #fff;
+      border: 3px solid #fff;
+      margin-bottom: 20px;
+      width: 120px;
+      border-radius: 100%;
+      height: 120px;
+      display: inline-block;
+    }
+
+    .avatar {
       width: 120px;
       height: 120px;
-      border-radius: 60px;
-      border: 1px solid #979797;
+      border-radius: 100%;
     }
 
     .displayName {
-      font-size: 34px;
       color: #FFFFFF;
-      line-height: 28px;
-      margin: 12px auto;
+
+      font-weight: 700;
+      font-style: normal;
+      font-size: 50px;
+      letter-spacing: -0.04em;
+      line-height: 1;
+      color: rgba(0,0,0,0.8);
+      margin: 0 0 8px 0;
+      outline: 0;
+      word-break: break-word;
+      word-wrap: break-word;
     }
 
     .location {
@@ -44,16 +64,17 @@
       line-height: 17px;
       display: block;
       margin: 5px auto 15px auto;
-      // background: url(http://localhost:5000/images/place.svg) no-repeat top center;
-      // background-size: 10px 10px;
     }
   }
 
   .headline {
+    // color: #4C4C4C;
+    color: rgba(0,0,0,0.6);
     font-size: 18px;
-    color: #4C4C4C;
-    line-height: 22px;
-    padding: 15px 10px;
+    outline: 0;
+    word-break: break-word;
+    word-wrap: break-word;
+    letter-spacing: -0.02em;
   }
 
   &.coverAndPhoto {
@@ -101,6 +122,30 @@
       .content {
         width: 90%;
         left: 5%;
+      }
+    }
+  }
+
+  .networks {
+    list-style: none;
+    list-style-image: none;
+    padding: 0;
+
+    li {
+      display: inline-block;
+      vertical-align: top;
+      border-left: 1px solid rgba(0,0,0,0.05);
+      padding: 10px 20px 5px 20px;
+
+      &:first-child {
+        border-left: none;
+      }
+
+      a {
+        img {
+          width: 20px;
+          opacity: 0.5;
+        }
       }
     }
   }

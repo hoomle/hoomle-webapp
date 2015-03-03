@@ -2,25 +2,6 @@
 
 module.exports = function(server) {
 
-    server.get('/api/v1/homepage/stan', function(req, res) {
-        res
-            .contentType('application/json')
-            .send({
-                slug: 'stan',
-                displayName: 'Stan Chollet',
-                location: 'Paris & Orléans, France',
-                headline: 'Passionate about travel, software development and sport. <br /> Software Developer at @MeeticFrance',
-                photos: {
-                    cover: 'http://localhost:5000/mock/cover.jpg',
-                    profile: 'http://localhost:5000/mock/profile.png'
-                },
-                // only-cover | cover-and-photo | only-photo
-                // template: 'only-photo'
-                template: 'cover-and-photo'
-                // template: 'only-cover'
-            });
-    });
-
     server.get('/api/v1/homepage/stan/hooms', function(req, res) {
         res
             .contentType('application/json')

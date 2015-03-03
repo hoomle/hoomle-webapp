@@ -5,7 +5,6 @@ var HoomStore = require('../../stores/HoomStore');
 var hoomsActions = require('../../actions/hoomsActions');
 var TwitterHoom = require('../../components/TwitterHoom');
 var InstagramHoom = require('../../components/InstagramHoom');
-var RssHoom = require('../../components/RssHoom');
 
 /**
  * Hooms section
@@ -61,12 +60,6 @@ var Hooms = React.createClass({
             return (
                 /* jshint ignore:start */
                 <InstagramHoom key={hoom.id} id={hoom.id} source-url={hoom.sourceUrl} />
-                /* jshint ignore:end */
-            );
-        } else if (hoom.source == 'rss') {
-            return (
-                /* jshint ignore:start */
-                <RssHoom key={hoom.id} id={hoom.id} sourceUrl={hoom.sourceUrl} title={hoom.title} />
                 /* jshint ignore:end */
             );
         }

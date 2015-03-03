@@ -35,7 +35,7 @@ var Homepage = React.createClass({
         var headerStyle = {};
 
         if (this.state.homepage.template === 'only-photo' || this.state.homepage.template === 'cover-and-photo') {
-            photo = <img className="mainPhoto" src={this.state.homepage.photos.profile} alt={this.state.homepage.displayName} />;
+            photo = <div className="avatarContainer"><img className="avatar" src={this.state.homepage.photos.profile} alt={this.state.homepage.displayName} /></div>;
         }
 
         if (this.state.homepage.template === 'only-cover' || this.state.homepage.template === 'cover-and-photo') {
@@ -58,17 +58,43 @@ var Homepage = React.createClass({
                     <div className="content">
                         {photo}
                         <h1 className="displayName" dangerouslySetInnerHTML={{__html: this.state.homepage.displayName}} />
-                        <span className="location" dangerouslySetInnerHTML={{__html: this.state.homepage.location}} />
+                        <p className="headline" dangerouslySetInnerHTML={{__html: this.state.homepage.headline}} />
                     </div>
-                    <div className="filter" />
                 </header>
-                <div className="headline" dangerouslySetInnerHTML={{__html: this.state.homepage.headline}} />
-                <Hooms homepage={this.state.homepage.slug} />
+                <ul className="networks">
+                    <li>
+                        <a href="#">
+                            <img src="/images/twitter.svg" alt="twitter"/>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <img src="/images/facebook.svg" alt="facebook" />
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <img src="/images/github.svg" alt="github" />
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <img src="/images/linkedin.svg" alt="LinkedIn" />
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <img src="/images/meetup.svg" alt="Meetup" />
+                        </a>
+                    </li>
+                </ul>
             </div>
             /* jshint ignore:end */
         );
     }
 
 });
+
+/* <Hooms homepage={this.state.homepage.slug} /> */
 
 module.exports = Homepage;

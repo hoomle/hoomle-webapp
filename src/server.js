@@ -8,18 +8,11 @@
  * | | | | (_) | (_) | | | | | | |  __/
  * |_| |_|\___/ \___/|_| |_| |_|_|\___|
  *
- *                                      (_)    _
- *  ___  ___ _ ____   _____ _ __     ___ _  __| | ___
- * / __|/ _ \ '__\ \ / / _ \ '__|   / __| |/ _` |/ _ \
- * \__ \  __/ |   \ V /  __/ |      \__ \ | (_| |  __/
- * |___/\___|_|    \_/ \___|_|      |___/_|\__,_|\___|
- *
  */
 
 var path = require('path');
 var express = require('express');
 var expressState = require('express-state');
-var components = require('./components');
 var React = require('react/addons');
 var storeManager = require('./core/storeManager.js');
 var homepageActions = require('./actions/homepageActions');
@@ -34,21 +27,29 @@ server.set('port', appConfiguration.getPort());
 server.set('state namespace', 'ReactCtx');
 expressState.extend(server);
 
-server.get('/', function(req, res) {
-    homepageActions.load('stan').then(function() {
+var routes = require('./core/routes');
+var Router = require('react-router');
+var Html = require('./components/Html');
+
+server.use(function(req, res) {
+
+    homepageActions.load().then(function() {
+        Router.run(routes, req.url, function(Handler, state) {
+
             // Expose the context to the view
             res.expose(storeManager.dumpContext(), 'Stores');
 
-            var html = React.renderToStaticMarkup(new components.HtmlComponent({
+            var html = React.createElement(Html, {
                 state: res.locals.state.toString(),
-                markup: React.renderToString(new components.HomepageComponent())
-            }));
+                markup: React.renderToString(React.createElement(Handler))
+            });
 
             res
                 .status(200)
                 .header('Content-Type', 'text/html')
-                .send(html);
+                .send('<!DOCTYPE html>' + React.renderToStaticMarkup(html));
         });
+    });
 });
 
 if (appConfiguration.isApiMockEnabled()) {

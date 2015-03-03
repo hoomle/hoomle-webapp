@@ -8,24 +8,18 @@
  * | | | | (_) | (_) | | | | | | |  __/
  * |_| |_|\___/ \___/|_| |_| |_|_|\___|
  *
- *   __                 _           _     _
- *  / _|               | |         (_)   | |
- * | |_ _ __ ___  _ __ | |_     ___ _  __| | ___
- * |  _| '__/ _ \| '_ \| __|   / __| |/ _` |/ _ \
- * | | | | | (_) | | | | |_    \__ \ | (_| |  __/
- * |_| |_|  \___/|_| |_|\__|   |___/_|\__,_|\___|
- *
  */
 
 require('babel/polyfill');
 var React = require('react');
-var components = require('./components');
 var storeManager = require('./core/storeManager.js');
+
+var App = require('./components/App');
 
 function run() {
     storeManager.loadContext(window.ReactCtx.Stores);
     React.render(
-        new components.HomepageComponent(),
+        React.createElement(App),
         document.getElementById('app')
     );
 }

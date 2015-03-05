@@ -41,7 +41,7 @@ server.use(function(req, res) {
 
             var html = React.createElement(Html, {
                 state: res.locals.state.toString(),
-                markup: React.renderToString(React.createElement(Handler))
+                markup: React.renderToString(React.createElement(Handler, state))
             });
 
             res

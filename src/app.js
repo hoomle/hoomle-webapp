@@ -13,15 +13,15 @@
 require('babel/polyfill');
 var React = require('react');
 var storeManager = require('./core/storeManager.js');
-
-var App = require('./components/App');
+var routes = require('./core/routes');
+var Router = require('react-router');
 
 function run() {
+    // Load the data build on the server
     storeManager.loadContext(window.ReactCtx.Stores);
-    React.render(
-        React.createElement(App),
-        document.getElementById('app')
-    );
+    Router.run(routes, Router.HistoryLocation, function(Handler, state) {
+        React.render(<Handler {...state} />, document.getElementById('app'));
+    });
 }
 
 // Run the application when both DOM is ready

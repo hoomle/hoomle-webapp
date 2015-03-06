@@ -2,7 +2,7 @@
 
 var React = require('react');
 var classNames = require('classnames');
-var FieldValidation = require('../mixins/FieldValidation');
+var FieldValidation = require('./mixins/FieldValidation');
 var objectAssign = require('object-assign');
 
 /**

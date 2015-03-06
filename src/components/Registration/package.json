@@ -1,6 +1,0 @@
-{
-  "name": "Registration",
-  "version": "0.0.0",
-  "private": true,
-  "main": "./Registration.jsx"
-}

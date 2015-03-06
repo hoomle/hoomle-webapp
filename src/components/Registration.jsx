@@ -3,7 +3,7 @@
 var React = require('react');
 var when = require('when');
 var _ = require('lodash');
-var InputField = require('../Form/InputField');
+var InputField = require('./Form/InputField');
 
 /**
  * React class to handle the rendering of the registration page

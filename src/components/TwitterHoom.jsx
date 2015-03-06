@@ -1,7 +1,7 @@
 'use strict';
 
 var React = require('react/addons');
-var hoomsActions = require('../../actions/hoomsActions');
+var hoomsActions = require('../actions/hoomsActions');
 
 /**
  * TwitterHoom section

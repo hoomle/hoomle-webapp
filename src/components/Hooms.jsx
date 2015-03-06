@@ -1,10 +1,10 @@
 'use strict';
 
 var React = require('react/addons');
-var HoomStore = require('../../stores/HoomStore');
-var hoomsActions = require('../../actions/hoomsActions');
-var TwitterHoom = require('../../components/TwitterHoom');
-var InstagramHoom = require('../../components/InstagramHoom');
+var HoomStore = require('../stores/HoomStore');
+var hoomsActions = require('../actions/hoomsActions');
+var TwitterHoom = require('./TwitterHoom');
+var InstagramHoom = require('./InstagramHoom');
 
 /**
  * Hooms section

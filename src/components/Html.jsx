@@ -1,7 +1,7 @@
 'use strict';
 
 var React = require('react');
-var Footer = require('../Footer');
+var Footer = require('./Footer');
 
 /**
  * React class to handle the rendering of the HTML head section

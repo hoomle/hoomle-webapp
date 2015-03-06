@@ -1,8 +1,7 @@
 'use strict';
 
 var React = require('react/addons');
-var HomepageStore = require('../../stores/HomepageStore');
-var Hooms = require('../../components/Hooms');
+var HomepageStore = require('../stores/HomepageStore');
 
 var cx = React.addons.classSet;
 
@@ -94,7 +93,5 @@ var Homepage = React.createClass({
     }
 
 });
-
-/* <Hooms homepage={this.state.homepage.slug} /> */
 
 module.exports = Homepage;

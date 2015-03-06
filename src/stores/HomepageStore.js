@@ -37,7 +37,7 @@ var HomepageStore = assign({}, EventEmitter.prototype, {
     },
 
     off: function(callback) {
-        this.off(CHANGE_EVENT, callback);
+        this.removeListener(CHANGE_EVENT, callback);
     },
 
     serialize: function() {
@@ -60,13 +60,13 @@ HomepageStore.dispatcherToken = Dispatcher.register((payload) => {
 
         case ActionTypes.LOAD_HOMEPAGE_SUCCESS:
             HomepageStore.loadHomepage(action.homepage);
+            HomepageStore.emitChange();
             break;
 
         default:
             return true;
     }
 
-    HomepageStore.emitChange();
     return true;
 });
 

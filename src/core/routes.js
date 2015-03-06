@@ -11,10 +11,10 @@ var Registration = require('../components/Registration');
 var NotFound = require('../components/NotFound');
 
 var routes = (
-    <Route name="app" path="/" handler={App}>
-        <DefaultRoute name="homepage" handler={Homepage} />
-        <Route name="registration" path="/registration" handler={Registration} />
+    <Route name="homepage" path="/" handler={App}>
+        <Route name="registration" handler={Registration} />
         <NotFoundRoute name="404" handler={NotFound} />
+        <DefaultRoute handler={Homepage} />
     </Route>
 );
 

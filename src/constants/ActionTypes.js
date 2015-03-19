@@ -13,7 +13,11 @@ var ActionTypes = keyMirror({
 
     LOAD_HOOM_EMBED_CODE: null,
     LOAD_HOOM_EMBED_CODE_SUCCESS: null,
-    LOAD_HOOM_EMBED_CODE_ERROR: null
+    LOAD_HOOM_EMBED_CODE_ERROR: null,
+
+    REGISTRATION_PENDING: null,
+    REGISTRATION_SUCCESS: null,
+    REGISTRATION_ERROR: null
 });
 
 module.exports = ActionTypes;

@@ -12,33 +12,52 @@ function Hooms(configuration) {
 }
 
 /**
- * Retrieve hooms by its homepage slug
+ * Retrieve Hooms by its slug
  *
- * @param homepageSlug
+ * @param slug
  * @returns Promise
  */
-Hooms.prototype.getByHomepageSlug = function(homepageSlug) {
+Hooms.prototype.getBySlug = function(slug) {
     return when.promise(function(resolve, reject) {
-        http.get(this.configuration.getBaseUrl() + '/homepage/' + homepageSlug + '/hooms')
+        http.get(this.configuration.getBaseUrl() + '/hooms/' + slug)
             .accept('application/json')
             .end(function (err, res) {
-                return err ? reject(err) : resolve(res.body.hooms);
+                return err ? reject(err) : resolve(res.body);
             });
     }.bind(this));
 };
 
 /**
- * Retrieve oEmbed data for a specific hoom
+ * Create new Hooms (Profile & Homepage)
  *
- * @param hoomId
+ * @param {Object} hooms
+ * @param {boolean} dryrun
  * @returns Promise
  */
-Hooms.prototype.getOembedByHoom = function(hoomId) {
+Hooms.prototype.create = function(hooms, dryrun) {
+    dryrun = dryrun || false;
+    var dryrunQueryString = '';
+
+    if (dryrun) {
+        dryrunQueryString = '?dryrun';
+    }
+
     return when.promise(function(resolve, reject) {
-        http.get(this.configuration.getBaseUrl() + '/hooms/' + hoomId + '/oembed')
+        http
+            .post(this.configuration.getBaseUrl() + '/hooms' + dryrunQueryString)
+            .send(hooms)
             .accept('application/json')
-            .end(function (err, res) {
-                return err ? reject(err) : resolve(res.body);
+            .end(function(err, res) {
+                if (err) {
+                    return reject(err);
+                }
+
+                // TODO Refactor with an hoomleApi Error object
+                if (res.statusType === 4) {
+                    return reject(res.body);
+                }
+
+                return resolve(res.body);
             });
     }.bind(this));
 };

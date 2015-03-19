@@ -1,9 +1,8 @@
 'use strict';
 
-var React = require('react/addons');
-var HomepageStore = require('../stores/HomepageStore');
-
-var cx = React.addons.classSet;
+var React           = require('react');
+var classNames      = require('classnames');
+var HomepageStore   = require('../stores/HomepageStore');
 
 /**
  * Homepage section
@@ -43,7 +42,7 @@ var Homepage = React.createClass({
             };
         }
 
-        var classes = cx({
+        var classes = classNames({
             'Homepage': true,
             'coverAndPhoto': this.state.homepage.template === 'cover-and-photo',
             'onlyPhoto': this.state.homepage.template === 'only-photo',

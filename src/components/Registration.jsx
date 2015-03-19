@@ -1,9 +1,11 @@
 'use strict';
 
 var React = require('react');
-var when = require('when');
-var _ = require('lodash');
-var InputField = require('./Form/InputField');
+var InputField = require('react-form-validator').components.InputField;
+var PasswordField = require('react-form-validator').components.PasswordField;
+var FormValidation = require('react-form-validator').mixins.FormValidation;
+var registrationAction = require('../actions/registrationAction');
+var vHooms = require('../validators').Hooms;
 
 /**
  * React class to handle the rendering of the registration page
@@ -13,57 +15,44 @@ var InputField = require('./Form/InputField');
  */
 var Registration = React.createClass({
 
+    mixins: [FormValidation],
+
     handleClick: function() {
-        // Explicitly focus the text input using the raw DOM API.
-        console.log('Registration:handleClick');
-        console.log('username: '            + this.refs.usernameInput.getDOMNode().value);
-        console.log('display name: '        + this.refs.displayNameInput.getDOMNode().value);
-        console.log('email: '               + this.refs.emailInput.getDOMNode().value);
-        console.log('password: '            + this.refs.passwordInput.getDOMNode().value);
-        // this.refs.usernameInput.validate();
+        this.validateForm()
+            .then(function(values) {
+                registrationAction(values);
+            }, function(err) {
+                console.log('validateForm error');
+                console.log(err);
+            });
     },
 
     render: function() {
-
-        var validator1 = function(e) {
-            console.log('validator1: ' + e);
-            return when.promise(function(resolve, reject) {
-                setTimeout(function() {
-                    if (e === 'kevin') {
-                        resolve();
-                    } else {
-                        reject({
-                            message: 'you have to call you kevin'
-                        });
-                    }
-                }, 2000);
-            });
-        };
-
         return (
             <div>
                 Registration
                 <form>
                     <div>
                         <label>username</label>
-                        <InputField name="username" ref="usernameInput" validateOn="onBlur" validators={[validator1]} />
+                        <InputField name="slug" ref="slugInput"
+                            validators={[vHooms.property('slug')]} />
                     </div>
                     <div>
                         <label>display name</label>
-                        <InputField name="displayname" ref="displayNameInput" />
+                        <InputField name="displayName" ref="displayNameInput"
+                            validators={[vHooms.property('displayName')]} />
                     </div>
                     <div>
                         <label>email</label>
-                        <InputField name="email" ref="emailInput" />
+                        <InputField name="email" ref="emailInput"
+                            validators={[vHooms.property('email')]} />
                     </div>
                     <div>
                         <label>password</label>
-                        <input name="password" ref="passwordInput" type="password" />
+                        <PasswordField name="password" ref="passwordsInput"
+                            validators={[vHooms.property('password')]} />
                     </div>
-                        <input
-                            type="button"
-                            value="Register"
-                            onClick={this.handleClick} />
+                    <input type="button" value="Register" onClick={this.handleClick} />
                 </form>
             </div>
         );

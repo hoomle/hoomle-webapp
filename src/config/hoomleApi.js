@@ -3,10 +3,9 @@
 var hoomleApi = require('../services/hoomleApi');
 
 var configuration = new hoomleApi.Configuration(
-    process.env.HOOMLE_API_BASE_URL || 'http://localhost:5000/api/v1'
+    process.env.HOOMLE_API_BASE_URL || 'http://api.hoomle.dev'
 );
 
 module.exports = {
-    Hooms       : new hoomleApi.Hooms(configuration),
-    Homepages   : new hoomleApi.Homepages(configuration)
+    Hooms      : new hoomleApi.Hooms(configuration)
 };

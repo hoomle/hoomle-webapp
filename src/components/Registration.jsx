@@ -6,6 +6,7 @@ var PasswordField = require('react-form-validator').components.PasswordField;
 var FormValidation = require('react-form-validator').mixins.FormValidation;
 var registrationAction = require('../actions/registrationAction');
 var vHooms = require('../validators').Hooms;
+var Navigation = require('react-router').Navigation;
 
 /**
  * React class to handle the rendering of the registration page
@@ -15,13 +16,17 @@ var vHooms = require('../validators').Hooms;
  */
 var Registration = React.createClass({
 
-    mixins: [FormValidation],
+    mixins: [FormValidation, Navigation],
 
     handleClick: function() {
         this.validateForm()
             .then(function(values) {
-                registrationAction(values);
-            }, function(err) {
+                registrationAction(values, this)
+                    .then(function(hooms) {
+                        console.log('route to homepage from initiale component');
+                        this.transitionTo('userHomepage', {slug: hooms.homepage.slug});
+                    }.bind(this));
+            }.bind(this), function(err) {
                 console.log('validateForm error');
                 console.log(err);
             });
@@ -49,7 +54,7 @@ var Registration = React.createClass({
                     </div>
                     <div>
                         <label>password</label>
-                        <PasswordField name="password" ref="passwordsInput"
+                        <PasswordField name="password" ref="passwordInput"
                             validators={[vHooms.property('password')]} />
                     </div>
                     <input type="button" value="Register" onClick={this.handleClick} />

@@ -20,9 +20,11 @@ var App = React.createClass({
                     <ul>
                         <li><Link to="homepage">Homepage</Link></li>
                         <li><Link to="registration">Signin</Link></li>
+                        <li><Link to="login">Login</Link></li>
+                        <li><a href="/chuck">go to chuck page</a></li>
                     </ul>
                 </header>
-                <RouteHandler />
+                <RouteHandler {...this.props} />
             </div>
         );
     }

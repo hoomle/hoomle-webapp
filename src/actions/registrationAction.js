@@ -3,6 +3,7 @@
 var Dispatcher = require('../core/Dispatcher');
 var ActionTypes = require('../constants/ActionTypes');
 var hoomleApi = require('../config').hoomleApi;
+var when = require('when');
 
 module.exports = function(hooms) {
     Dispatcher.handleViewAction({
@@ -10,7 +11,7 @@ module.exports = function(hooms) {
         hooms: hooms
     });
 
-    hoomleApi.Hooms
+    return hoomleApi.Hooms
         .create(hooms)
         .then(function(newHooms) {
             console.log('REGISTRATION_SUCCESS: ');
@@ -19,6 +20,7 @@ module.exports = function(hooms) {
                 actionType: ActionTypes.REGISTRATION_SUCCESS,
                 hooms: newHooms
             });
+            return when.resolve(newHooms);
         }, function(err) {
             console.log('REGISTRATION_ERROR: ');
             console.log(err);
@@ -27,5 +29,9 @@ module.exports = function(hooms) {
                 hooms: hooms,
                 err: err
             });
+            return when.reject({
+                hooms: hooms,
+                err: err
+            });
         });
-}
+};

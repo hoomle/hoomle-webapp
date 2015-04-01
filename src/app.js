@@ -20,7 +20,8 @@ function run() {
     // Load the data build on the server
     storeManager.loadContext(window.ReactCtx.Stores);
     Router.run(routes, Router.HistoryLocation, function(Handler, state) {
-        React.render(<Handler {...state} />, document.getElementById('app'));
+        console.log('Handler (FRONT): ');
+        React.render(<Handler {...state.params} />, document.getElementById('app'));
     });
 }
 

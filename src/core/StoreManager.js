@@ -1,11 +1,9 @@
 'use strict';
 
 var fluxIsomorphicHelpers = require('flux-isomorphic-helpers');
-var HomepageStore = require('../stores/HomepageStore');
-var HoomStore = require('../stores/HoomStore');
+var UserHomepageStore = require('../stores/UserHomepageStore');
 
 var storeManager = new fluxIsomorphicHelpers.StoreManager();
-storeManager.add(HomepageStore);
-storeManager.add(HoomStore);
+storeManager.add(UserHomepageStore);
 
 module.exports = storeManager;

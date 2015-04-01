@@ -7,5 +7,9 @@ var configuration = new hoomleApi.Configuration(
 );
 
 module.exports = {
-    Hooms      : new hoomleApi.Hooms(configuration)
+    Hooms           : new hoomleApi.Hooms(configuration),
+    Authentication  : new hoomleApi.Authentication(configuration),
+    setToken        : function(token) {
+        configuration.setToken(token);
+    }
 };

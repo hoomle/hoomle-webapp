@@ -22,7 +22,16 @@ Hooms.prototype.getBySlug = function(slug) {
         http.get(this.configuration.getBaseUrl() + '/hooms/' + slug)
             .accept('application/json')
             .end(function (err, res) {
-                return err ? reject(err) : resolve(res.body);
+                if (err) {
+                    return reject(err);
+                }
+
+                // TODO Refactor with an hoomleApi Error object
+                if (res.statusType === 4) {
+                    return reject(res.body);
+                }
+
+                return resolve(res.body);
             });
     }.bind(this));
 };
@@ -46,6 +55,32 @@ Hooms.prototype.create = function(hooms, dryrun) {
         http
             .post(this.configuration.getBaseUrl() + '/hooms' + dryrunQueryString)
             .send(hooms)
+            .accept('application/json')
+            .end(function(err, res) {
+                if (err) {
+                    return reject(err);
+                }
+
+                // TODO Refactor with an hoomleApi Error object
+                if (res.statusType === 4) {
+                    return reject(res.body);
+                }
+
+                return resolve(res.body);
+            });
+    }.bind(this));
+};
+
+/**
+ * Get current hooms (for the user authenticated)
+ *
+ * @returns Promise
+ */
+Hooms.prototype.getMe = function() {
+    return when.promise(function(resolve, reject) {
+        http
+            .get(this.configuration.getBaseUrl() + '/me/hooms')
+            .set('Authorization', this.configuration.getAuthorizationHeader())
             .accept('application/json')
             .end(function(err, res) {
                 if (err) {

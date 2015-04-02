@@ -2,6 +2,7 @@
 
 var http = require('superagent');
 var when = require('when');
+var tokenLib = require('./lib/token');
 
 /**
  * Constructor
@@ -76,11 +77,11 @@ Hooms.prototype.create = function(hooms, dryrun) {
  *
  * @returns Promise
  */
-Hooms.prototype.getMe = function() {
+Hooms.prototype.getMe = function(token) {
     return when.promise(function(resolve, reject) {
         http
             .get(this.configuration.getBaseUrl() + '/me/hooms')
-            .set('Authorization', this.configuration.getAuthorizationHeader())
+            .set('Authorization', tokenLib.getAuthorizationHeader(token))
             .accept('application/json')
             .end(function(err, res) {
                 if (err) {

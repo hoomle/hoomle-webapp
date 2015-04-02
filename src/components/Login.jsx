@@ -5,7 +5,7 @@ var InputField = require('react-form-validator').components.InputField;
 var PasswordField = require('react-form-validator').components.PasswordField;
 var v = require('react-form-validator').validators;
 var FormValidation = require('react-form-validator').mixins.FormValidation;
-var authenticationActions = require('../actions/authenticationActions');
+var sessionActions = require('../actions/sessionActions');
 var vHooms = require('../validators').Hooms;
 var Navigation = require('react-router').Navigation;
 var SessionStore = require('../stores/SessionStore');
@@ -35,18 +35,13 @@ var Login = React.createClass({
     handleClick: function() {
         this.validateForm()
             .then(function(values) {
-                console.log('login: ' + values.email);
-                console.log('password: ' + values.password);
-
-                authenticationActions.byCredentials(values.email, values.password)
+                sessionActions
+                    .authenticate(values.email, values.password)
                     .then(function() {
-                        console.log('redirect to homepage');
                         this.transitionTo('homepage');
                     }.bind(this));
-
-            }.bind(this), function(err) {
-                console.log('validateForm error');
-                console.log(err);
+            }.bind(this), function() {
+                console.log('Component.LOGIN validateForm error');
             });
     },
 

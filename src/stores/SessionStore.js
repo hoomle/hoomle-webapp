@@ -5,71 +5,71 @@ var ActionTypes = require('../constants/ActionTypes');
 var EventEmitter = require('eventemitter3');
 var assign = require('react/lib/Object.assign');
 
-var _token = {};
-var _hooms = {};
-var _logged = false;
-var CHANGE_EVENT = 'change';
-
 var SessionStore = assign({}, EventEmitter.prototype, {
 
     name: 'SessionStore',
 
+    _token: {},
+    _hooms: {},
+    _logged: false,
+    CHANGE_EVENT: 'change',
+
     getState: function() {
         return {
-            token: _token,
-            hooms: _hooms,
-            isLogged: _logged
+            token: this._token,
+            hooms: this._hooms,
+            isLogged: this._logged
         };
     },
 
     setToken: function(token) {
-        _token = token;
+        this._token = token;
     },
 
     setHooms: function(hooms) {
-        _hooms = hooms;
+        this._hooms = hooms;
     },
 
     setLogged: function(logged) {
-        _logged = logged;
+        this._logged = logged;
     },
 
     getToken: function() {
-        return _token;
+        return this._token;
     },
 
     getHooms: function() {
-        return _token;
+        return this._token;
     },
 
     isLogged: function() {
-        return _logged;
+        return this._logged;
     },
 
     emitChange: function() {
-        return this.emit(CHANGE_EVENT);
+        return this.emit(this.CHANGE_EVENT);
     },
 
     onChange: function(callback) {
-        this.on(CHANGE_EVENT, callback);
+        this.on(this.CHANGE_EVENT, callback);
     },
 
     off: function(callback) {
-        this.removeListener(CHANGE_EVENT, callback);
+        this.removeListener(this.CHANGE_EVENT, callback);
     },
 
     serialize: function() {
         return {
-            token: _token,
-            hooms: _hooms,
-            isLogged: _logged
+            token: this._token,
+            hooms: this._hooms,
+            isLogged: this._logged
         };
     },
 
     unserialize: function(payload) {
-        _token = payload.token;
-        _hooms = payload.hooms;
-        _logged = payload.isLogged;
+        this._token = payload.token;
+        this._hooms = payload.hooms;
+        this._logged = payload.isLogged;
     }
 });
 

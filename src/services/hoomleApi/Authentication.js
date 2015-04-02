@@ -36,8 +36,6 @@ Authentication.prototype.getAccessToken = function(email, password) {
                     return reject(res.body);
                 }
 
-                this.configuration.setToken(res.body);
-
                 return resolve(res.body);
             }.bind(this));
     }.bind(this));

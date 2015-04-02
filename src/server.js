@@ -14,15 +14,18 @@ var path = require('path');
 var express = require('express');
 var expressState = require('express-state');
 var React = require('react/addons');
-var storeManager = require('./core/storeManager.js');
-var homepageActions = require('./actions/homepageActions');
+// var storeManager = require('./core/storeManager.js');
 var UserHomepageActions = require('./actions/UserHomepageActions');
+var SessionActions = require('./actions/SessionActions');
 var appConfiguration = require('./config/appConfiguration');
 var cookieParser = require('cookie-parser');
 var cookie = require('./core/cookie');
+var morgan = require('morgan');
+var fluxIsomorphicHelpers = require('flux-isomorphic-helpers');
 
 var server = express();
 
+server.use(morgan('dev'));
 server.use(cookieParser());
 server.use(cookie.expressMiddleware);
 server.use(express.static(path.join(__dirname)));
@@ -38,6 +41,14 @@ var Html = require('./components/Html');
 
 var renderView = function(req, res) {
     Router.run(routes, req.url, function(Handler, state) {
+
+        var UserHomepageStore = require('./stores/UserHomepageStore');
+        var SessionStore = require('./stores/SessionStore');
+
+        var storeManager = new fluxIsomorphicHelpers.StoreManager();
+        storeManager.add(UserHomepageStore);
+        storeManager.add(SessionStore);
+
         // Expose the context to the view
         res.expose(storeManager.dumpContext(), 'Stores');
 
@@ -57,25 +68,41 @@ var renderView = function(req, res) {
 
 server.route('/').get(function(req, res) {
     console.log('SERVER VIEW /');
-    console.log(req.cookies);
-    homepageActions.load().then(function() {
-        renderView(req, res);
-    });
+
+    SessionActions.load()
+        .then(function() {
+            renderView(req, res);
+        }, function() {
+            renderView(req, res);
+        });
 });
 
 server.route('/:slug').get(function(req, res, next) {
     console.log('SERVER VIEW /:slug');
-    UserHomepageActions.load(req.params.slug).then(function() {
-        renderView(req, res);
-    }, function() {
-        next();
-    });
+
+    SessionActions.load()
+        .then(function() {
+            return UserHomepageActions.load(req.params.slug);
+        }, function() {
+            return UserHomepageActions.load(req.params.slug);
+        })
+        .then(function() {
+            renderView(req, res);
+        }, function() {
+            next();
+        });
 });
 
 // Fallback
 server.use(function(req, res) {
     console.log('SERVER VIEW Fallback');
-    renderView(req, res);
+
+    SessionActions.load()
+        .then(function() {
+            renderView(req, res);
+        }, function() {
+            renderView(req, res);
+        });
 });
 
 server.listen(server.get('port'), function() {

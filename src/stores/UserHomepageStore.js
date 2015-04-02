@@ -5,51 +5,51 @@ var ActionTypes = require('../constants/ActionTypes');
 var EventEmitter = require('eventemitter3');
 var assign = require('react/lib/Object.assign');
 
-var _hooms = {};
-var _loading = false;
-var CHANGE_EVENT = 'change';
-
 var UserHomepageStore = assign({}, EventEmitter.prototype, {
 
     name: 'UserHomepageStore',
 
+    _hooms: {},
+    _loading: false,
+    CHANGE_EVENT: 'change',
+
     getState: function() {
         return {
-            hooms: _hooms,
-            loading: _loading
+            hooms: this._hooms,
+            loading: this._loading
         };
     },
 
     loadHooms: function(hooms) {
-        _hooms = hooms;
+        this._hooms = hooms;
     },
 
     getHooms: function() {
-        return _hooms;
+        return this._hooms;
     },
 
     emitChange: function() {
-        return this.emit(CHANGE_EVENT);
+        return this.emit(this.CHANGE_EVENT);
     },
 
     onChange: function(callback) {
-        this.on(CHANGE_EVENT, callback);
+        this.on(this.CHANGE_EVENT, callback);
     },
 
     off: function(callback) {
-        this.removeListener(CHANGE_EVENT, callback);
+        this.removeListener(this.CHANGE_EVENT, callback);
     },
 
     serialize: function() {
         return {
-            hooms: _hooms,
-            loading: _loading
+            hooms: this._hooms,
+            loading: this._loading
         };
     },
 
     unserialize: function(payload) {
-        _hooms = payload.hooms;
-        _loading = payload.loading;
+        this._hooms = payload.hooms;
+        this._loading = payload.loading;
     }
 });
 

@@ -1,3 +1,3 @@
 # Hoomle Webapp
 
-Warning: This is an incomplete work-in-progress.
+Warning: This is an incomplete side project.

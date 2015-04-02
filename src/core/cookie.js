@@ -91,12 +91,16 @@ var expire = function(key, options) {
 };
 
 var expressMiddleware = function(req, res, next) {
+    console.log('cookie.expressMiddleware');
+
     _res = res;
     _req = req;
 
     // Clone req.cookies
     if (_req.cookies) {
         _reqCookies = JSON.parse(JSON.stringify(req.cookies));
+    } else {
+        _reqCookies = {};
     }
 
     next();
